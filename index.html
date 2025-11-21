@@ -9,9 +9,12 @@
 <body>
   <!-- Added landing page with a Start button -->
   <div id="landing" class="landing">
-    <h1>Developer Internship Application — Remote</h1>
-    <p>We are looking for motivated students who want to learn and build real features. This is a remote, unpaid internship with mentorship and real project experience.</p>
-    <button id="startBtn">Start</button>
+    <div class="landing-content">
+      <p class="landing-text">We are looking for motivated students who want to learn, build real features, and work in a practical development environment.</p>
+      <p class="landing-text">This is <strong>a remote, unpaid internship</strong></p>
+      <p class="landing-text">with mentorship, structured tasks, and real project experience.</p>
+      <button id="startBtn">Start</button>
+    </div>
   </div>
 
   <!-- Wrapped the form in a container to toggle visibility -->
@@ -34,7 +37,7 @@
             <label>2. E-mail <span class="req">*</span><div class="hint">We'll contact you via this email.</div></label>
             <div class="icon-input">
               <span class="icon">✉</span>
-              <input name="email" type="email" placeholder="you@domain.com" required />
+              <input name="email" type="email" placeholder="yourname@gmail.com" required />
             </div>
           </div>
         </div>
@@ -145,7 +148,7 @@
           <div class="field">
             <label>12. Upload Your Resume <span class="req">*</span><div class="hint">Only PDF, DOC, DOCX, PPTX. (If you want simpler flow, paste a public link in GitHub/LinkedIn.)</div></label>
             <div class="file-drop" id="fileDrop">
-              <input type="file" id="resumeFile" accept=".pdf,.doc,.docx,.ppt,.pptx" />
+              <input type="file" id="resumeFile" name="resume" accept=".pdf,.doc,.docx,.ppt,.pptx" />
               <div class="drop-text">Drop files here or click to choose</div>
             </div>
           </div>
