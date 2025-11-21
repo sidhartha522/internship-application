@@ -35,27 +35,34 @@ body {
   }
 }
 
-input, select, textarea {
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 16px;
-  border-radius: 10px;
-  border: 1.5px solid var(--input-border);
+#formContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
   background: var(--panel);
-  font-size: 16px;
+  border-radius: 10px;
   box-shadow: var(--shadow);
 }
 
+input, select, textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1.5px solid var(--input-border);
+  font-size: 16px;
+}
+
 button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border-radius: 8px;
   background: var(--accent);
   color: #fff;
   border: none;
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-weight: 700;
   cursor: pointer;
-  transition: background 0.3s;
-  align-self: center;
+  font-size: 16px;
 }
 
 button:hover {
@@ -145,4 +152,30 @@ button:hover {
   input, select, textarea {
     font-size: 15px;
   }
+}
+
+/* Added styles for landing page and visibility toggle */
+.landing {
+  text-align: center;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 600px;
+}
+
+.hidden {
+  display: none;
+}
+
+#startBtn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#startBtn:hover {
+  background: #5a1f3b;
 }

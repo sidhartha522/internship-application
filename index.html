@@ -7,183 +7,186 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="form-wrap">
-    <header class="top-header">
-      <h1>Developer Internship Application — Remote</h1>
-      <p class="subtitle">We are looking for motivated students who want to learn and build real features. This is a remote, unpaid internship with mentorship and real project experience.</p>
-    </header>
+  <!-- Added landing page with a Start button -->
+  <div id="landing" class="landing">
+    <h1>Developer Internship Application — Remote</h1>
+    <p>We are looking for motivated students who want to learn and build real features. This is a remote, unpaid internship with mentorship and real project experience.</p>
+    <button id="startBtn">Start</button>
+  </div>
 
-    <form id="internForm" class="form" novalidate>
-      <!-- 1. Full name (two inputs) -->
-      <div class="form-row two-cols">
-        <div class="field">
-          <label>1. Full Name <span class="req">*</span></label>
-          <div class="split">
-            <input name="firstName" placeholder="First name" required />
-            <input name="lastName" placeholder="Last name" required />
+  <!-- Wrapped the form in a container to toggle visibility -->
+  <div id="formContainer" class="hidden">
+      <form id="internForm" class="form" novalidate>
+        <!-- 1. Full name (two inputs) -->
+        <div class="form-row two-cols">
+          <div class="field">
+            <label>1. Full Name <span class="req">*</span></label>
+            <div class="split">
+              <input name="firstName" placeholder="First name" required />
+              <input name="lastName" placeholder="Last name" required />
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 2. Email -->
-      <div class="form-row">
-        <div class="field">
-          <label>2. E-mail <span class="req">*</span><div class="hint">We'll contact you via this email.</div></label>
-          <div class="icon-input">
-            <span class="icon">✉</span>
-            <input name="email" type="email" placeholder="you@domain.com" required />
+        <!-- 2. Email -->
+        <div class="form-row">
+          <div class="field">
+            <label>2. E-mail <span class="req">*</span><div class="hint">We'll contact you via this email.</div></label>
+            <div class="icon-input">
+              <span class="icon">✉</span>
+              <input name="email" type="email" placeholder="you@domain.com" required />
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 3. Contact -->
-      <div class="form-row">
-        <div class="field">
-          <label>3. Contact Number <span class="req">*</span></label>
-          <div class="icon-input">
-            <span class="icon">📞</span>
-            <input name="phone" type="tel" placeholder="+91 98765 43210" required />
+        <!-- 3. Contact -->
+        <div class="form-row">
+          <div class="field">
+            <label>3. Contact Number <span class="req">*</span></label>
+            <div class="icon-input">
+              <span class="icon">📞</span>
+              <input name="phone" type="tel" placeholder="+91 98765 43210" required />
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 4. LinkedIn -->
-      <div class="form-row">
-        <div class="field">
-          <label>4. LinkedIn Profile URL <span class="req">*</span></label>
-          <input name="linkedin" type="url" placeholder="https://www.linkedin.com/in/yourname" required />
-        </div>
-      </div>
-
-      <!-- 5. GitHub -->
-      <div class="form-row">
-        <div class="field">
-          <label>5. GitHub Profile URL <span class="req">*</span></label>
-          <input name="github" type="url" placeholder="https://github.com/username" required />
-        </div>
-      </div>
-
-      <!-- 6. Birth date -->
-      <div class="form-row">
-        <div class="field">
-          <label>6. Birth Date <span class="req">*</span></label>
-          <input name="birthDate" type="date" required />
-        </div>
-      </div>
-
-      <!-- 7. Position -->
-      <div class="form-row">
-        <div class="field">
-          <label>7. What position are you applying for? <span class="req">*</span></label>
-          <select name="position" required>
-            <option value="">Select position</option>
-            <option>Backend Intern (Python + Flask)</option>
-            <option>Frontend Intern (React)</option>
-            <option>Full-Stack Intern (React + Python)</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- 8. Skill rating 1-5 (buttons) -->
-      <div class="form-row">
-        <div class="field">
-          <label>8. Rate your skill level (1–5) <span class="req">*</span></label>
-          <div class="rating" role="radiogroup" aria-label="Skill level">
-            <label><input type="radio" name="skill" value="1" required><span>1</span></label>
-            <label><input type="radio" name="skill" value="2"><span>2</span></label>
-            <label><input type="radio" name="skill" value="3"><span>3</span></label>
-            <label><input type="radio" name="skill" value="4"><span>4</span></label>
-            <label><input type="radio" name="skill" value="5"><span>5</span></label>
+        <!-- 4. LinkedIn -->
+        <div class="form-row">
+          <div class="field">
+            <label>4. LinkedIn Profile URL <span class="req">*</span></label>
+            <input name="linkedin" type="url" placeholder="https://www.linkedin.com/in/yourname" required />
           </div>
         </div>
-      </div>
 
-      <!-- 9. Weekly availability -->
-      <div class="form-row">
-        <div class="field">
-          <label>9. Weekly Availability? <span class="req">*</span></label>
-          <select name="availability" required>
-            <option value="">Select...</option>
-            <option>5–10 hrs</option>
-            <option>10–15 hrs</option>
-            <option>15–20 hrs</option>
-            <option>Depends on schedule</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- 10. Commit 1-2 months (Yes/No) -->
-      <div class="form-row">
-        <div class="field">
-          <label>10. Can you commit for 1–2 months? <span class="req">*</span></label>
-          <div class="horizontal-radio">
-            <label><input type="radio" name="commit" value="Yes" required> Yes</label>
-            <label><input type="radio" name="commit" value="No"> No</label>
+        <!-- 5. GitHub -->
+        <div class="form-row">
+          <div class="field">
+            <label>5. GitHub Profile URL <span class="req">*</span></label>
+            <input name="github" type="url" placeholder="https://github.com/username" required />
           </div>
         </div>
-      </div>
 
-      <!-- 11. Employment status (list) -->
-      <div class="form-row">
-        <div class="field">
-          <label>11. What is your current employment status? <span class="req">*</span></label>
-          <div class="stacked-radio">
-            <label><input type="radio" name="employment" value="Employed" required> Employed</label>
-            <label><input type="radio" name="employment" value="Unemployed"> Unemployed</label>
-            <label><input type="radio" name="employment" value="Self-Employed"> Self-Employed</label>
-            <label><input type="radio" name="employment" value="Student"> Student</label>
-            <label><input type="radio" name="employment" value="Other"> Other</label>
+        <!-- 6. Birth date -->
+        <div class="form-row">
+          <div class="field">
+            <label>6. Birth Date <span class="req">*</span></label>
+            <input name="birthDate" type="date" required />
           </div>
         </div>
-      </div>
 
-      <!-- 12. Resume upload (drop area) -->
-      <div class="form-row">
-        <div class="field">
-          <label>12. Upload Your Resume <span class="req">*</span><div class="hint">Only PDF, DOC, DOCX, PPTX. (If you want simpler flow, paste a public link in GitHub/LinkedIn.)</div></label>
-          <div class="file-drop" id="fileDrop">
-            <input type="file" id="resumeFile" accept=".pdf,.doc,.docx,.ppt,.pptx" />
-            <div class="drop-text">Drop files here or click to choose</div>
+        <!-- 7. Position -->
+        <div class="form-row">
+          <div class="field">
+            <label>7. What position are you applying for? <span class="req">*</span></label>
+            <select name="position" required>
+              <option value="">Select position</option>
+              <option>Backend Intern (Python + Flask)</option>
+              <option>Frontend Intern (React)</option>
+              <option>Full-Stack Intern (React + Python)</option>
+            </select>
           </div>
         </div>
-      </div>
 
-      <!-- 13. Blank field group text placeholder removed, so skip -->
-
-      <!-- 14. Why should we select you? -->
-      <div class="form-row">
-        <div class="field">
-          <label>14. Why should we select you? <span class="req">*</span><div class="hint">Add anything else you'd like us to know</div></label>
-          <textarea name="why" rows="6" required></textarea>
-        </div>
-      </div>
-
-      <!-- 15. Start date -->
-      <div class="form-row">
-        <div class="field">
-          <label>15. Available start date <span class="req">*</span></label>
-          <input name="startDate" type="date" required />
-        </div>
-      </div>
-
-      <!-- 16. Agree unpaid internship -->
-      <div class="form-row">
-        <div class="field">
-          <label>16. Do you agree this is an unpaid internship? <span class="req">*</span></label>
-          <div class="horizontal-radio">
-            <label><input type="radio" name="agree" value="Yes" required> Yes</label>
-            <label><input type="radio" name="agree" value="No"> No</label>
+        <!-- 8. Skill rating 1-5 (buttons) -->
+        <div class="form-row">
+          <div class="field">
+            <label>8. Rate your skill level (1–5) <span class="req">*</span></label>
+            <div class="rating" role="radiogroup" aria-label="Skill level">
+              <label><input type="radio" name="skill" value="1" required><span>1</span></label>
+              <label><input type="radio" name="skill" value="2"><span>2</span></label>
+              <label><input type="radio" name="skill" value="3"><span>3</span></label>
+              <label><input type="radio" name="skill" value="4"><span>4</span></label>
+              <label><input type="radio" name="skill" value="5"><span>5</span></label>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- final actions -->
-      <div class="form-row actions-row">
-        <button id="submitBtn" type="submit">Submit Application</button>
-        <div id="status" class="status" aria-live="polite"></div>
-      </div>
-    </form>
-  </main>
+        <!-- 9. Weekly availability -->
+        <div class="form-row">
+          <div class="field">
+            <label>9. Weekly Availability? <span class="req">*</span></label>
+            <select name="availability" required>
+              <option value="">Select...</option>
+              <option>5–10 hrs</option>
+              <option>10–15 hrs</option>
+              <option>15–20 hrs</option>
+              <option>Depends on schedule</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 10. Commit 1-2 months (Yes/No) -->
+        <div class="form-row">
+          <div class="field">
+            <label>10. Can you commit for 1–2 months? <span class="req">*</span></label>
+            <div class="horizontal-radio">
+              <label><input type="radio" name="commit" value="Yes" required> Yes</label>
+              <label><input type="radio" name="commit" value="No"> No</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. Employment status (list) -->
+        <div class="form-row">
+          <div class="field">
+            <label>11. What is your current employment status? <span class="req">*</span></label>
+            <div class="stacked-radio">
+              <label><input type="radio" name="employment" value="Employed" required> Employed</label>
+              <label><input type="radio" name="employment" value="Unemployed"> Unemployed</label>
+              <label><input type="radio" name="employment" value="Self-Employed"> Self-Employed</label>
+              <label><input type="radio" name="employment" value="Student"> Student</label>
+              <label><input type="radio" name="employment" value="Other"> Other</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12. Resume upload (drop area) -->
+        <div class="form-row">
+          <div class="field">
+            <label>12. Upload Your Resume <span class="req">*</span><div class="hint">Only PDF, DOC, DOCX, PPTX. (If you want simpler flow, paste a public link in GitHub/LinkedIn.)</div></label>
+            <div class="file-drop" id="fileDrop">
+              <input type="file" id="resumeFile" accept=".pdf,.doc,.docx,.ppt,.pptx" />
+              <div class="drop-text">Drop files here or click to choose</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 13. Blank field group text placeholder removed, so skip -->
+
+        <!-- 14. Why should we select you? -->
+        <div class="form-row">
+          <div class="field">
+            <label>14. Why should we select you? <span class="req">*</span><div class="hint">Add anything else you'd like us to know</div></label>
+            <textarea name="why" rows="6" required></textarea>
+          </div>
+        </div>
+
+        <!-- 15. Start date -->
+        <div class="form-row">
+          <div class="field">
+            <label>15. Available start date <span class="req">*</span></label>
+            <input name="startDate" type="date" required />
+          </div>
+        </div>
+
+        <!-- 16. Agree unpaid internship -->
+        <div class="form-row">
+          <div class="field">
+            <label>16. Do you agree this is an unpaid internship? <span class="req">*</span></label>
+            <div class="horizontal-radio">
+              <label><input type="radio" name="agree" value="Yes" required> Yes</label>
+              <label><input type="radio" name="agree" value="No"> No</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- final actions -->
+        <div class="form-row actions-row">
+          <button id="submitBtn" type="submit">Submit Application</button>
+          <div id="status" class="status" aria-live="polite"></div>
+        </div>
+      </form>
+  </div>
 
   <script src="script.js"></script>
 </body>

@@ -37,3 +37,13 @@ form.addEventListener('submit', async (e) => {
     submitBtn.disabled = false;
   }
 });
+
+// Added logic to toggle between landing page and form
+const landing = document.getElementById('landing');
+const formContainer = document.getElementById('formContainer');
+const startBtn = document.getElementById('startBtn');
+
+startBtn.addEventListener('click', () => {
+  landing.classList.add('hidden');
+  formContainer.classList.remove('hidden');
+});
