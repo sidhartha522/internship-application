@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Internship Form — Ekthaa (Preview)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="layout">
+    <section class="panel form-panel">
+      <header class="panel-header">
+        <h1>Developer Internship Application — Remote</h1>
+        <p class="lead">We are looking for motivated students who want to learn and build real features. This is a remote, unpaid internship with mentorship and real project experience.</p>
+      </header>
+
+      <form id="internForm" class="form" novalidate>
+        <div class="row">
+          <label>Full Name <span class="required">*</span>
+            <input name="fullName" type="text" required />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Email <span class="required">*</span>
+            <input name="email" type="email" required />
+          </label>
+          <label>Phone Number <span class="required">*</span>
+            <input name="phone" type="tel" required />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>GitHub Profile (URL) <span class="required">*</span>
+            <input name="github" type="url" placeholder="https://github.com/username" required />
+          </label>
+          <label>LinkedIn (optional)
+            <input name="linkedin" type="url" placeholder="https://linkedin.com/in/..." />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Choose Your Role <span class="required">*</span>
+            <select name="role" required>
+              <option value="">Select...</option>
+              <option>Backend Intern (Python + Flask)</option>
+              <option>Frontend Intern (React)</option>
+              <option>Full-Stack Intern (React + Python)</option>
+            </select>
+          </label>
+
+          <label>Skill level (1–10) <span class="required">*</span>
+            <input name="skill" type="number" min="1" max="10" step="1" required />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Mini Task / Answer (based on role) <span class="required">*</span>
+            <textarea name="taskAnswer" rows="5" placeholder="Backend: write a Python function... Frontend: a small React snippet..." required></textarea>
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Weekly Availability <span class="required">*</span>
+            <select name="availability" required>
+              <option value="">Select...</option>
+              <option>5–10 hrs</option>
+              <option>10–15 hrs</option>
+              <option>15–20 hrs</option>
+              <option>Depends on schedule</option>
+            </select>
+          </label>
+
+          <label>Can you commit for 1–2 months? <span class="required">*</span>
+            <select name="commit" required>
+              <option value="">Select...</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Preferred start date <span class="required">*</span>
+            <input name="startDate" type="date" required />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Why should we select you? <span class="required">*</span>
+            <textarea name="why" rows="3" required></textarea>
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Resume Upload <span class="required">*</span>
+            <input name="resume" type="file" accept=".pdf,.doc,.docx" required />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Employment Status <span class="required">*</span>
+            <select name="employmentStatus" required>
+              <option value="">Select...</option>
+              <option>Employed</option>
+              <option>Unemployed</option>
+              <option>Student</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row inline agree-row">
+          <label>Do you agree this is an unpaid internship? <span class="required">*</span>
+            <select name="agree" required>
+              <option value="">Select...</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="submitBtn" type="submit">Submit Application</button>
+        </div>
+
+        <div id="status" class="status" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
