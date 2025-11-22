@@ -41,10 +41,21 @@ const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 const SHEET_NAME = 'Sheet1'; // Replace with your sheet name
 
 // Initialize Google Sheets API
-const auth = new google.auth.GoogleAuth({
-  keyFile: './service-account-key.json',
-  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-});
+let auth;
+if (process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
+  // Use credentials from environment variable (for production)
+  const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
+  auth = new google.auth.GoogleAuth({
+    credentials: credentials,
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  });
+} else {
+  // Use local key file (for development)
+  auth = new google.auth.GoogleAuth({
+    keyFile: './service-account-key.json',
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  });
+}
 
 const sheets = google.sheets({ version: 'v4', auth });
 
