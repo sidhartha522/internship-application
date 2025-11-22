@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:3001';
+// Use relative URL so it works both locally and on production
+const API_URL = window.location.origin;
 let applications = [];
 
 // Load applications on page load

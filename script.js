@@ -2,7 +2,8 @@
 const form = document.getElementById('internForm');
 const statusEl = document.getElementById('status');
 const submitBtn = document.getElementById('submitBtn');
-const SERVER_URL = 'http://localhost:3001/submit';
+// Use relative URL so it works both locally and on production
+const SERVER_URL = '/submit';
 
 // Submit handler
 form.addEventListener('submit', async (e) => {

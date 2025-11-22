@@ -8,7 +8,7 @@ const session = require('express-session');
 const cloudinary = require('cloudinary').v2;
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // Configure Cloudinary
 cloudinary.config({
