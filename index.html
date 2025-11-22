@@ -135,7 +135,7 @@
             <label>11. What is your current employment status? <span class="req">*</span></label>
             <div class="stacked-radio">
               <label><input type="radio" name="employment" value="Employed" required> Employed</label>
-              <label><input type="radio" name="employment" value="Unemployed"> Unemployed</label>
+              <label><input type="radio" name="employment" value="Recently Graduated"> Recently Graduated</label>
               <label><input type="radio" name="employment" value="Self-Employed"> Self-Employed</label>
               <label><input type="radio" name="employment" value="Student"> Student</label>
               <label><input type="radio" name="employment" value="Other"> Other</label>
@@ -151,31 +151,30 @@
               <input type="file" id="resumeFile" name="resume" accept=".pdf,.doc,.docx,.ppt,.pptx" />
               <div class="drop-text">Drop files here or click to choose</div>
             </div>
+            <div id="fileName" class="file-name"></div>
           </div>
         </div>
 
-        <!-- 13. Blank field group text placeholder removed, so skip -->
-
-        <!-- 14. Why should we select you? -->
+        <!-- 13. Why should we select you? -->
         <div class="form-row">
           <div class="field">
-            <label>14. Why should we select you? <span class="req">*</span><div class="hint">Add anything else you'd like us to know</div></label>
+            <label>13. Why should we select you? <span class="req">*</span><div class="hint">Add anything else you'd like us to know</div></label>
             <textarea name="why" rows="6" required></textarea>
           </div>
         </div>
 
-        <!-- 15. Start date -->
+        <!-- 14. Available start date -->
         <div class="form-row">
           <div class="field">
-            <label>15. Available start date <span class="req">*</span></label>
+            <label>14. Available start date <span class="req">*</span></label>
             <input name="startDate" type="date" required />
           </div>
         </div>
 
-        <!-- 16. Agree unpaid internship -->
+        <!-- 15. Agree unpaid internship -->
         <div class="form-row">
           <div class="field">
-            <label>16. Do you agree this is an unpaid internship? <span class="req">*</span></label>
+            <label>15. Do you agree this is an unpaid internship? <span class="req">*</span></label>
             <div class="horizontal-radio">
               <label><input type="radio" name="agree" value="Yes" required> Yes</label>
               <label><input type="radio" name="agree" value="No"> No</label>
@@ -189,6 +188,10 @@
           <div id="status" class="status" aria-live="polite"></div>
         </div>
       </form>
+
+      <div id="thankYouMessage" class="hidden">
+            <p>Thank you for submitting your application! We will be sending a mail within 1 week.</p>
+          </div>
   </div>
 
   <script src="script.js"></script>

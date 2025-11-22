@@ -26,6 +26,9 @@ form.addEventListener('submit', async (e) => {
       statusEl.textContent = 'Thanks — your application has been submitted successfully!';
       statusEl.style.color = '#2d7a2d';
       form.reset();
+
+      // Redirect to a thank-you page
+      window.location.href = '/thank-you.html';
     } else {
       statusEl.textContent = 'Submission failed: ' + result.message;
       statusEl.style.color = '#a33';
@@ -47,4 +50,13 @@ const startBtn = document.getElementById('startBtn');
 startBtn.addEventListener('click', () => {
   landing.classList.add('hidden');
   formContainer.classList.remove('hidden');
+});
+
+// Display uploaded file name
+const fileInput = document.getElementById('resumeFile');
+const fileNameDisplay = document.getElementById('fileName');
+
+fileInput.addEventListener('change', (event) => {
+  const fileName = event.target.files[0]?.name || '';
+  fileNameDisplay.textContent = fileName ? `Selected file: ${fileName}` : '';
 });

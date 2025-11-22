@@ -157,6 +157,25 @@ input:focus,select:focus,textarea:focus{
 #startBtn:hover{transform:translateY(-2px);background:#1a1a1a;box-shadow:0 8px 20px rgba(0,0,0,0.20)}
 #startBtn:active{transform:translateY(0px)}
 
+.thank-you-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.thank-you-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.thank-you-container p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
 @media (max-width:880px){
   .landing{padding:40px 20px;margin:40px auto}
   .landing-text{font-size:18px}
