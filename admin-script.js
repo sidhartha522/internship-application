@@ -231,15 +231,44 @@ function closeModal() {
   document.getElementById('detailModal').style.display = 'none';
 }
 
-function downloadResume(filename) {
-  if (!filename) return;
+async function downloadResume(filename) {
+  if (!filename) {
+    console.error('No filename provided for resume download');
+    return;
+  }
   
-  // If it's already a Drive link, open it directly
-  if (filename.startsWith('http')) {
-    window.open(filename, '_blank');
-  } else {
-    // Otherwise, use the download endpoint
-    window.open(`${API_URL}/admin/download/${encodeURIComponent(filename)}`, '_blank');
+  try {
+    console.log('Attempting to download resume:', filename);
+    
+    // Use the backend endpoint to proxy the PDF
+    const url = `${API_URL}/admin/download/${encodeURIComponent(filename)}`;
+    console.log('Opening URL:', url);
+    
+    // Open in new tab - the server will stream the PDF
+    const newWindow = window.open(url, '_blank');
+    
+    if (!newWindow) {
+      console.error('Popup blocked! Please allow popups for this site.');
+      alert('Popup blocked! Please allow popups to view resumes.');
+      return;
+    }
+    
+    // Verify the URL is accessible
+    fetch(url, { method: 'HEAD' })
+      .then(response => {
+        if (!response.ok) {
+          console.error('Resume fetch failed:', response.status, response.statusText);
+          alert(`Failed to load resume. Error: ${response.status} ${response.statusText}`);
+        } else {
+          console.log('Resume loaded successfully');
+        }
+      })
+      .catch(error => {
+        console.error('Error checking resume URL:', error);
+      });
+  } catch (error) {
+    console.error('Error in downloadResume:', error);
+    alert('Failed to open resume: ' + error.message);
   }
 }
 

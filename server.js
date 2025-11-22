@@ -52,14 +52,18 @@ async function uploadToCloudinary(fileBuffer, fileName) {
   try {
     console.log('Uploading file to Cloudinary:', fileName);
     
+    // Generate a unique filename to avoid conflicts
+    const timestamp = Date.now();
+    const cleanFileName = fileName.replace(/\.[^/.]+$/, '').replace(/[^a-zA-Z0-9]/g, '_');
+    const uniquePublicId = `resume_${timestamp}_${cleanFileName}`;
+    
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         {
-          resource_type: 'raw', // Use 'raw' for PDFs and other non-image files
-          folder: 'internship-resumes',
-          public_id: fileName, // Keep full filename with extension
+          resource_type: 'raw', // Use raw type for PDFs
+          public_id: uniquePublicId,
           overwrite: true,
-          use_filename: true
+          invalidate: true
         },
         (error, result) => {
           if (error) {
@@ -192,20 +196,106 @@ app.get('/admin/applications', async (req, res) => {
 });
 
 // Admin endpoint to download resume files
-// Admin endpoint to redirect to Cloudinary URL
-app.get('/admin/download/:fileId', (req, res) => {
+// Admin endpoint to fetch and serve PDF from Cloudinary
+app.get('/admin/download/:fileId', async (req, res) => {
   try {
-    const fileId = req.params.fileId;
+    const fileId = decodeURIComponent(req.params.fileId);
+    console.log('Fetching resume:', fileId);
     
-    // If it's a Cloudinary URL, redirect to it
-    if (fileId.startsWith('http')) {
-      return res.redirect(decodeURIComponent(fileId));
+    // If it's a Cloudinary URL, fetch and stream it
+    if (fileId.startsWith('http') && fileId.includes('cloudinary.com')) {
+      try {
+        const axios = require('axios');
+        
+        // For raw resource type, use the full URL with version number
+        // Just ensure it uses the correct resource type
+        const urlParts = fileId.split('/upload/');
+        let downloadUrl = fileId;
+        
+        if (urlParts.length >= 2) {
+          // Keep the version number and path - just ensure correct resource type
+          const pathAfterUpload = urlParts[1];
+          
+          // If URL contains /raw/upload/, use it as-is
+          // If URL contains /image/upload/, try raw first
+          if (fileId.includes('/image/upload/')) {
+            downloadUrl = fileId.replace('/image/upload/', '/raw/upload/');
+            console.log('Converted image URL to raw URL:', downloadUrl);
+          } else {
+            downloadUrl = fileId; // Use the original URL
+            console.log('Using original URL:', downloadUrl);
+          }
+        }
+        
+        console.log('Attempting to fetch file from URL:', downloadUrl);
+        
+        let response = await axios({
+          method: 'get',
+          url: downloadUrl,
+          responseType: 'stream',
+          maxRedirects: 5,
+          validateStatus: function (status) {
+            return status >= 200 && status < 500; // Don't throw on 4xx errors
+          }
+        });
+        
+        // If raw type fails with 404, try image type (for old uploads)
+        if (response.status === 404 && downloadUrl.includes('/raw/upload/')) {
+          const fallbackUrl = downloadUrl.replace('/raw/upload/', '/image/upload/');
+          console.log('Trying fallback URL (image type):', fallbackUrl);
+          
+          response = await axios({
+            method: 'get',
+            url: fallbackUrl,
+            responseType: 'stream',
+            maxRedirects: 5,
+            validateStatus: function (status) {
+              return status >= 200 && status < 500;
+            }
+          });
+        }
+        
+        if (response.status !== 200) {
+          console.error('❌ Failed to fetch file. Status:', response.status);
+          console.error('Headers:', response.headers);
+          
+          return res.status(response.status).json({
+            error: 'File not accessible',
+            status: response.status,
+            hint: response.status === 401 
+              ? 'File access denied. The file may be private or requires re-uploading.' 
+              : 'File not found. Please upload a new application.'
+          });
+        }
+        
+        console.log('✅ Successfully fetched PDF from Cloudinary, streaming to client...');
+        
+        // Set headers to display PDF in browser
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'inline; filename="resume.pdf"');
+        res.setHeader('Cache-Control', 'public, max-age=3600');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        
+        // Stream the PDF to client
+        response.data.pipe(res);
+        
+      } catch (fetchError) {
+        console.error('❌ Error fetching file:', fetchError.message);
+        console.error('Status:', fetchError.response?.status);
+        
+        res.status(fetchError.response?.status || 500).json({ 
+          error: 'Failed to download file from Cloudinary',
+          details: fetchError.message,
+          status: fetchError.response?.status
+        });
+      }
+    } else {
+      console.error('Invalid or non-Cloudinary URL:', fileId);
+      res.status(404).json({ error: 'File not found or invalid URL' });
     }
-    
-    res.status(404).json({ error: 'File not found' });
   } catch (error) {
     console.error('Error downloading file:', error);
-    res.status(500).json({ error: 'Failed to download file' });
+    res.status(500).json({ error: 'Failed to download file: ' + error.message });
   }
 });
 
@@ -215,7 +305,7 @@ app.post('/login', (req, res) => {
 
     // Replace with environment variables or a secure method in production
     const adminUsername = 'admin';
-    const adminPassword = 'Sidhartha@63002';
+    const adminPassword = '123';
 
     if (username === adminUsername && password === adminPassword) {
         req.session.isAuthenticated = true;
