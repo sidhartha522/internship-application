@@ -54,14 +54,15 @@ async function uploadToCloudinary(fileBuffer, fileName) {
     
     // Generate a unique filename to avoid conflicts
     const timestamp = Date.now();
+    const fileExtension = fileName.split('.').pop(); // Get file extension
     const cleanFileName = fileName.replace(/\.[^/.]+$/, '').replace(/[^a-zA-Z0-9]/g, '_');
     const uniquePublicId = `resume_${timestamp}_${cleanFileName}`;
     
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         {
-          resource_type: 'raw', // Use raw type for PDFs
-          public_id: uniquePublicId,
+          resource_type: 'raw', // Use raw type for all document files
+          public_id: `${uniquePublicId}.${fileExtension}`, // Include extension in public_id
           overwrite: true,
           invalidate: true
         },
@@ -268,15 +269,28 @@ app.get('/admin/download/:fileId', async (req, res) => {
           });
         }
         
-        console.log('✅ Successfully fetched PDF from Cloudinary, streaming to client...');
+        console.log('✅ Successfully fetched file from Cloudinary, streaming to client...');
         
-        // Set headers to display PDF in browser
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', 'inline; filename="resume.pdf"');
+        // Detect file type from URL
+        const fileExtension = downloadUrl.split('.').pop().toLowerCase();
+        let contentType = 'application/pdf';
+        let fileName = 'resume.pdf';
+        
+        if (fileExtension === 'docx') {
+          contentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+          fileName = 'resume.docx';
+        } else if (fileExtension === 'doc') {
+          contentType = 'application/msword';
+          fileName = 'resume.doc';
+        }
+        
+        // Set headers to display in browser (inline for all file types)
+        res.setHeader('Content-Type', contentType);
+        res.setHeader('Content-Disposition', `inline; filename="${fileName}"`);
         res.setHeader('Cache-Control', 'public, max-age=3600');
         res.setHeader('Access-Control-Allow-Origin', '*');
         
-        // Stream the PDF to client
+        // Stream the file to client
         response.data.pipe(res);
         
       } catch (fetchError) {
