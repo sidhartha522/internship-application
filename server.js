@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const { google } = require('googleapis');
 const cors = require('cors');
@@ -12,14 +13,14 @@ const PORT = process.env.PORT || 3001;
 
 // Configure Cloudinary
 cloudinary.config({
-  cloud_name: 'dui9chgpb',
-  api_key: '366634852469368',
-  api_secret: 'OAsNppLiiR_xZuv64-P3D3SwXPI'
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 // Middleware for session management (must be before routes)
 app.use(session({
-    secret: 'your-secret-key',
+    secret: process.env.SESSION_SECRET || 'your-secret-key',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false } // Set to true if using HTTPS
@@ -36,7 +37,7 @@ const upload = multer({
 });
 
 // Google Sheets configuration
-const SPREADSHEET_ID = '1_6pIks1iiaz92Vs2Rh2_iMe0nmmkNDfPe4QR4q3OcUY'; // Replace with your Google Sheet ID
+const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 const SHEET_NAME = 'Sheet1'; // Replace with your sheet name
 
 // Initialize Google Sheets API
@@ -317,9 +318,9 @@ app.get('/admin/download/:fileId', async (req, res) => {
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
 
-    // Replace with environment variables or a secure method in production
-    const adminUsername = 'admin';
-    const adminPassword = '123';
+    // Use environment variables for credentials
+    const adminUsername = process.env.ADMIN_USERNAME || 'admin';
+    const adminPassword = process.env.ADMIN_PASSWORD || '123';
 
     if (username === adminUsername && password === adminPassword) {
         req.session.isAuthenticated = true;
