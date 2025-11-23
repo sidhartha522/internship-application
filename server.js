@@ -73,10 +73,11 @@ async function uploadToCloudinary(fileBuffer, fileName) {
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         {
-          resource_type: 'raw', // Use raw type for all document files
+          resource_type: 'image', // Use image type for better accessibility
           public_id: `${uniquePublicId}.${fileExtension}`, // Include extension in public_id
           overwrite: true,
-          invalidate: true
+          invalidate: true,
+          format: fileExtension // Preserve original format
         },
         (error, result) => {
           if (error) {
@@ -220,27 +221,26 @@ app.get('/admin/download/:fileId', async (req, res) => {
       try {
         const axios = require('axios');
         
-        // For raw resource type, use the full URL with version number
-        // Just ensure it uses the correct resource type
-        const urlParts = fileId.split('/upload/');
+        // Extract public_id and generate signed URL
+        const urlMatch = fileId.match(/\/upload\/(?:v\d+\/)?(.+)$/);
         let downloadUrl = fileId;
         
-        if (urlParts.length >= 2) {
-          // Keep the version number and path - just ensure correct resource type
-          const pathAfterUpload = urlParts[1];
+        if (urlMatch && urlMatch[1]) {
+          const publicId = urlMatch[1];
+          console.log('Extracted public_id for signed URL:', publicId);
           
-          // If URL contains /raw/upload/, use it as-is
-          // If URL contains /image/upload/, try raw first
-          if (fileId.includes('/image/upload/')) {
-            downloadUrl = fileId.replace('/image/upload/', '/raw/upload/');
-            console.log('Converted image URL to raw URL:', downloadUrl);
-          } else {
-            downloadUrl = fileId; // Use the original URL
-            console.log('Using original URL:', downloadUrl);
-          }
+          // Generate a signed URL with authentication
+          downloadUrl = cloudinary.url(publicId, {
+            resource_type: 'image',
+            type: 'upload',
+            secure: true,
+            sign_url: true, // Enable URL signing for authentication
+            expires_at: Math.floor(Date.now() / 1000) + 3600 // Valid for 1 hour
+          });
+          console.log('Generated signed URL:', downloadUrl);
+        } else {
+          console.log('Using original URL:', downloadUrl);
         }
-        
-        console.log('Attempting to fetch file from URL:', downloadUrl);
         
         let response = await axios({
           method: 'get',
@@ -251,22 +251,6 @@ app.get('/admin/download/:fileId', async (req, res) => {
             return status >= 200 && status < 500; // Don't throw on 4xx errors
           }
         });
-        
-        // If raw type fails with 404, try image type (for old uploads)
-        if (response.status === 404 && downloadUrl.includes('/raw/upload/')) {
-          const fallbackUrl = downloadUrl.replace('/raw/upload/', '/image/upload/');
-          console.log('Trying fallback URL (image type):', fallbackUrl);
-          
-          response = await axios({
-            method: 'get',
-            url: fallbackUrl,
-            responseType: 'stream',
-            maxRedirects: 5,
-            validateStatus: function (status) {
-              return status >= 200 && status < 500;
-            }
-          });
-        }
         
         if (response.status !== 200) {
           console.error('❌ Failed to fetch file. Status:', response.status);
