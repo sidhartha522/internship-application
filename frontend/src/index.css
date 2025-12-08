@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-dark-bg: #0a0a0a;
+  --color-dark-card: #111111;
+  --color-dark-border: #1f1f1f;
+  --color-accent: #3b82f6;
+  --color-accent-hover: #2563eb;
+
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-float: float 3s ease-in-out infinite;
+
+  /* Override gray colors with blue-tinted whites */
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #e8f0fe;
+  --color-gray-200: #d4e3fc;
+  --color-gray-300: #a8c5f5;
+  --color-gray-400: #7ea8e8;
+  --color-gray-500: #6b91d6;
+  --color-gray-600: #5579c4;
+}
+
+@keyframes shimmer {
+  from { background-position: 0 0; }
+  to { background-position: -200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+* {
+  border-color: var(--color-dark-border);
+}
+
+body {
+  background-color: var(--color-dark-bg);
+  color: rgb(243 244 246);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+.glow-text {
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f1f1f;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a2a;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* Prevent iOS zoom on input focus */
+  }
+
+  .glow {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    -webkit-tap-highlight-color: rgba(59, 130, 246, 0.1);
+  }
+  
+  button, input, select, textarea {
+    font-size: 16px !important; /* Prevent zoom on iOS */
+  }
+}
+
+

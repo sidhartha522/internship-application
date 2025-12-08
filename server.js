@@ -30,6 +30,15 @@ app.use(session({
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from React build
+const distPath = path.join(__dirname, 'frontend/dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+  console.log('✅ Serving React app from:', distPath);
+} else {
+  console.log('⚠️  React build not found. Run: cd frontend && npm run build');
+}
+
 // Configure multer for file uploads (using memory storage for direct cloud upload)
 const upload = multer({ 
   storage: multer.memoryStorage(),
@@ -164,8 +173,43 @@ app.post('/submit', upload.single('resume'), async (req, res) => {
   }
 });
 
+// Simple authentication middleware
+const authenticateAdmin = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const token = authHeader.substring(7);
+  const expectedToken = Buffer.from(
+    `${process.env.ADMIN_USERNAME}:${process.env.ADMIN_PASSWORD}`
+  ).toString('base64');
+
+  if (token !== expectedToken) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  next();
+};
+
+// Admin login endpoint
+app.post('/api/admin/login', (req, res) => {
+  const { username, password } = req.body;
+
+  if (
+    username === process.env.ADMIN_USERNAME &&
+    password === process.env.ADMIN_PASSWORD
+  ) {
+    const token = Buffer.from(`${username}:${password}`).toString('base64');
+    res.json({ success: true, token });
+  } else {
+    res.status(401).json({ error: 'Invalid credentials' });
+  }
+});
+
 // Admin endpoint to get all applications from Google Sheets
-app.get('/admin/applications', async (req, res) => {
+app.get('/api/applications', authenticateAdmin, async (req, res) => {
   try {
     console.log('Fetching all applications from Google Sheets...');
     
@@ -334,17 +378,13 @@ app.get('/admin.html', (req, res, next) => {
     }
 });
 
-// Middleware to protect admin API routes
-app.use('/admin', (req, res, next) => {
-    if (req.session && req.session.isAuthenticated) {
-        next();
-    } else {
-        return res.status(401).json({ error: 'Unauthorized' });
-    }
-});
+// Serve old static files for backward compatibility
+app.use('/old', express.static('.'));
 
-// Serve static files (must be after protected routes)
-app.use(express.static('.'));
+// All other routes serve the React app (including /admin route)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
+});
 
 app.listen(PORT, '0.0.0.0', () => {
   const os = require('os');
@@ -360,10 +400,10 @@ app.listen(PORT, '0.0.0.0', () => {
     });
   });
   
-  console.log(`\n🚀 Server is running and accessible on your network!\n`);
-  console.log(`   Local:   http://localhost:${PORT}`);
-  console.log(`   Network: http://${localIP}:${PORT}`);
+  console.log(`\n🚀 Unified Application Server Running!\n`);
+  console.log(`   React App:  http://localhost:${PORT}`);
+  console.log(`   Network:    http://${localIP}:${PORT}`);
   console.log(`\n📊 Admin Dashboard:`);
-  console.log(`   Local:   http://localhost:${PORT}/admin.html`);
-  console.log(`   Network: http://${localIP}:${PORT}/admin.html\n`);
+  console.log(`   Local:      http://localhost:${PORT}/admin`);
+  console.log(`   Network:    http://${localIP}:${PORT}/admin\n`);
 });
