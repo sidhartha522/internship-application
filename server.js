@@ -75,18 +75,24 @@ async function uploadToCloudinary(fileBuffer, fileName) {
     
     // Generate a unique filename to avoid conflicts
     const timestamp = Date.now();
-    const fileExtension = fileName.split('.').pop(); // Get file extension
+    const fileExtension = fileName.split('.').pop().toLowerCase();
     const cleanFileName = fileName.replace(/\.[^/.]+$/, '').replace(/[^a-zA-Z0-9]/g, '_');
     const uniquePublicId = `resume_${timestamp}_${cleanFileName}`;
+    
+    // Determine resource type based on file extension
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'];
+    const resourceType = imageExtensions.includes(fileExtension) ? 'image' : 'raw';
+    
+    console.log(`Uploading with resource_type: ${resourceType}, extension: ${fileExtension}`);
     
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         {
-          resource_type: 'image', // Use image type for better accessibility
-          public_id: `${uniquePublicId}.${fileExtension}`, // Include extension in public_id
+          resource_type: resourceType,
+          public_id: uniquePublicId,
           overwrite: true,
           invalidate: true,
-          format: fileExtension // Preserve original format
+          access_mode: 'public'
         },
         (error, result) => {
           if (error) {
@@ -110,7 +116,7 @@ async function uploadToCloudinary(fileBuffer, fileName) {
 }
 
 // Endpoint to handle form submission
-app.post('/submit', upload.single('resume'), async (req, res) => {
+app.post('/api/submit', upload.single('resume'), async (req, res) => {
   try {
     console.log('Form submission received');
     console.log('Form data:', req.body);
@@ -133,25 +139,25 @@ app.post('/submit', upload.single('resume'), async (req, res) => {
       }
     }
 
-    // Prepare data for Google Sheets
+    // Prepare data for Google Sheets (match the order of columns)
     const row = [
-      new Date().toISOString(),
-      formData.firstName || '',
-      formData.lastName || '',
-      formData.email || '',
-      formData.phone || '',
-      formData.linkedin || '',
-      formData.github || '',
-      formData.birthDate || '',
-      formData.position || '',
-      formData.skill || '',
-      formData.availability || '',
-      formData.commit || '',
-      formData.employment || '',
-      resumeInfo || '',
-      formData.why || '',
-      formData.startDate || '',
-      formData.agree || '',
+      new Date().toISOString(),           // Column A: Timestamp
+      formData.firstName || '',           // Column B
+      formData.lastName || '',            // Column C
+      formData.email || '',               // Column D
+      formData.phone || '',               // Column E
+      formData.linkedin || '',            // Column F
+      formData.github || '',              // Column G
+      formData.birthDate || '',           // Column H
+      formData.position || '',            // Column I
+      formData.skill || '',               // Column J: Skill Level
+      formData.availability || '',        // Column K
+      formData.commit || '',              // Column L: Full-Time Commit
+      formData.employment || '',          // Column M: Employment Status
+      resumeInfo || '',                   // Column N: Resume URL
+      formData.why || '',                 // Column O: Why Join
+      formData.startDate || '',           // Column P
+      formData.agree || '',               // Column Q
     ];
 
     // Append data to Google Sheets
@@ -235,12 +241,12 @@ app.get('/api/applications', authenticateAdmin, async (req, res) => {
       github: row[6] || '',
       birthDate: row[7] || '',
       position: row[8] || '',
-      skill: row[9] || '',
+      skillLevel: row[9] || '',
       availability: row[10] || '',
-      commit: row[11] || '',
-      employment: row[12] || '',
+      fullTimeCommit: row[11] || '',
+      employmentStatus: row[12] || '',
       resume: row[13] || '',
-      why: row[14] || '',
+      whyJoin: row[14] || '',
       startDate: row[15] || '',
       agree: row[16] || '',
     }));
