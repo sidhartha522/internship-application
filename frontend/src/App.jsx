@@ -272,8 +272,9 @@ function App() {
               options={[
                 { value: '', label: 'Select position' },
                 { value: 'Backend Intern (Python + Flask)', label: 'Backend Intern (Python + Flask)' },
-                { value: 'Frontend Intern (React)', label: 'Frontend Intern (React)' },
-                { value: 'Full-Stack Intern (React + Python)', label: 'Full-Stack Intern (React + Python)' }
+                { value: 'Frontend Intern (React Native)', label: 'Frontend Intern (React Native)' },
+                { value: 'Full-Stack Intern (React Native + Python + Flask)', label: 'Full-Stack Intern (React Native + Python + Flask)' },
+                { value: 'Database Engineering Intern (Firebase/Firestore)', label: 'Database Engineering Intern (Firebase/Firestore)' }
               ]}
             />
 
