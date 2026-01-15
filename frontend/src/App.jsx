@@ -112,6 +112,39 @@ const POSITIONS = [
       'Familiarity with React and Python'
     ],
     preferred: ['Personal projects demonstrating full-stack skills']
+  },
+  {
+    id: 5,
+    slug: 'startup-builder-intern',
+    title: '🚀 Startup Builder Internship (You + Your Best Friend)',
+    type: 'Pair Role',
+    location: 'Bangalore, Pune, Chennai, Hyderabad (Preferred)',
+    duration: '1 month',
+    commitment: '30-60 mins/day',
+    description: 'You apply with your best friend. We are hiring a PAIR. Perfect for students obsessed with startups and founders.',
+    tags: ['Startup', 'Growth', 'Content', 'Sales'],
+    featured: true,
+    introduction: 'If you and your best friend are obsessed with startups, talk about founders, ideas, growth, and dream of building your own company one day — this role is for you.\n\nWe are preferably looking for students from Bangalore, Pune, Chennai, or Hyderabad. But honestly city doesn\'t matter. If you\'re out of the box, high-energy, and we like you — we will hire you even if you\'re from any other city.',
+    responsibilities: [
+      'Visit nearby local shops and explain the app',
+      'Capture real reactions and conversations on video',
+      'Edit videos to ~1 minute Instagram reels',
+      'Post consistently to build ekthaa\'s presence',
+      'Learn user acquisition, sales, and content creation in real life'
+    ],
+    requirements: [
+      'You and your best friend both apply together',
+      'Deep interest in the startup ecosystem',
+      'Extroverts who love talking to strangers',
+      'Can confidently explain an app in 1–2 minutes',
+      'Comfortable with basic editing apps like CapCut / VN'
+    ],
+    preferred: [
+      'Students who want to become startup founders someday',
+      'From Bangalore, Pune, Chennai, or Hyderabad',
+      'Can give 30–60 minutes a day consistently',
+      'High energy and out-of-the-box thinking'
+    ]
   }
 ]
 
