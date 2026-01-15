@@ -5,151 +5,11 @@ import Admin from './Admin'
 import AdminLogin from './AdminLogin'
 import './index.css'
 
-const POSITIONS = [
-  {
-    id: 1,
-    slug: 'ai-chatbot-developer',
-    title: 'AI Chatbot Developer',
-    type: 'Internship',
-    location: 'Remote',
-    duration: '2 months',
-    commitment: '15-20 hrs/week',
-    description: 'Build an intelligent conversational AI assistant for product discovery using RAG, Python, and LLM APIs.',
-    tags: ['Python', 'LLM/RAG', 'Flask', 'AI/ML'],
-    featured: true,
-    introduction: 'We are looking for a motivated AI Chatbot Developer Intern to join our team and help build an intelligent product discovery assistant. You will work directly with our founding engineers on a production system serving real users.',
-    responsibilities: [
-      'Design and develop a conversational AI chatbot for product and business discovery',
-      'Implement RAG (Retrieval-Augmented Generation) pipeline using vector databases',
-      'Integrate with free LLM APIs (Gemini, Groq, OpenRouter)',
-      'Build REST API endpoints using Python and Flask',
-      'Write clean, documented, and testable code',
-      'Participate in code reviews and technical discussions'
-    ],
-    requirements: [
-      'Basic understanding of Python programming',
-      'Familiarity with REST APIs and HTTP concepts',
-      'Interest in AI/ML and natural language processing',
-      'Ability to learn quickly and work independently',
-      'Good communication skills'
-    ],
-    preferred: [
-      'Experience with Flask or FastAPI',
-      'Prior exposure to LLM APIs or prompt engineering',
-      'Knowledge of vector databases (Pinecone, Weaviate)',
-      'Understanding of database concepts (SQL/NoSQL)'
-    ]
-  },
-  {
-    id: 2,
-    slug: 'frontend-intern-react',
-    title: 'Frontend Intern (React)',
-    type: 'Internship',
-    location: 'Remote',
-    duration: '2 months',
-    commitment: '15-20 hrs/week',
-    description: 'Work on modern React applications and learn from experienced developers building production UIs.',
-    tags: ['React.js', 'JavaScript', 'CSS'],
-    featured: false,
-    introduction: 'Join our frontend team to build beautiful, responsive user interfaces for our web applications.',
-    responsibilities: [
-      'Develop responsive UI components using React.js',
-      'Implement designs following provided specifications',
-      'Write clean, reusable component code',
-      'Collaborate with backend developers on API integration'
-    ],
-    requirements: [
-      'Basic knowledge of HTML, CSS, and JavaScript',
-      'Familiarity with React.js fundamentals',
-      'Understanding of component-based architecture'
-    ],
-    preferred: ['Experience with Tailwind CSS', 'Knowledge of state management']
-  },
-  {
-    id: 3,
-    slug: 'backend-intern-python',
-    title: 'Backend Intern (Python + Flask)',
-    type: 'Internship',
-    location: 'Remote',
-    duration: '2 months',
-    commitment: '15-20 hrs/week',
-    description: 'Build scalable backend services and REST APIs using Python and Flask for our platform.',
-    tags: ['Python', 'Flask', 'PostgreSQL'],
-    featured: false,
-    introduction: 'We are seeking a Backend Development Intern to help build and maintain our API infrastructure.',
-    responsibilities: [
-      'Develop RESTful API endpoints using Flask',
-      'Write database queries and manage data models',
-      'Implement authentication and authorization',
-      'Write unit tests for backend services'
-    ],
-    requirements: [
-      'Basic Python programming skills',
-      'Understanding of REST API concepts',
-      'Familiarity with SQL databases'
-    ],
-    preferred: ['Experience with Flask or Django', 'Knowledge of PostgreSQL']
-  },
-  {
-    id: 4,
-    slug: 'fullstack-intern',
-    title: 'Full Stack Intern',
-    type: 'Internship',
-    location: 'Remote',
-    duration: '2 months',
-    commitment: '15-20 hrs/week',
-    description: 'Get hands-on experience with both frontend and backend development on our stack.',
-    tags: ['React', 'Python', 'Flask', 'PostgreSQL'],
-    featured: false,
-    introduction: 'This role offers a comprehensive full-stack development experience across our entire technology stack.',
-    responsibilities: [
-      'Develop features across frontend and backend',
-      'Build React components and Flask API endpoints',
-      'Work with databases and data models'
-    ],
-    requirements: [
-      'Basic knowledge of both frontend and backend development',
-      'Familiarity with React and Python'
-    ],
-    preferred: ['Personal projects demonstrating full-stack skills']
-  },
-  {
-    id: 5,
-    slug: 'startup-builder-intern',
-    title: '🚀 Startup Builder Internship (You + Your Best Friend)',
-    type: 'Pair Role',
-    location: 'Bangalore, Pune, Chennai, Hyderabad (Preferred)',
-    duration: '1 month',
-    commitment: '30-60 mins/day',
-    description: 'You apply with your best friend. We are hiring a PAIR. Perfect for students obsessed with startups and founders.',
-    tags: ['Startup', 'Growth', 'Content', 'Sales'],
-    featured: true,
-    introduction: 'If you and your best friend are obsessed with startups, talk about founders, ideas, growth, and dream of building your own company one day — this role is for you.\n\nWe are preferably looking for students from Bangalore, Pune, Chennai, or Hyderabad. But honestly city doesn\'t matter. If you\'re out of the box, high-energy, and we like you — we will hire you even if you\'re from any other city.',
-    responsibilities: [
-      'Visit nearby local shops and explain the app',
-      'Capture real reactions and conversations on video',
-      'Edit videos to ~1 minute Instagram reels',
-      'Post consistently to build ekthaa\'s presence',
-      'Learn user acquisition, sales, and content creation in real life'
-    ],
-    requirements: [
-      'You and your best friend both apply together',
-      'Deep interest in the startup ecosystem',
-      'Extroverts who love talking to strangers',
-      'Can confidently explain an app in 1–2 minutes',
-      'Comfortable with basic editing apps like CapCut / VN'
-    ],
-    preferred: [
-      'Students who want to become startup founders someday',
-      'From Bangalore, Pune, Chennai, or Hyderabad',
-      'Can give 30–60 minutes a day consistently',
-      'High energy and out-of-the-box thinking'
-    ]
-  }
-]
+
 
 // Positions List Page
-function PositionsPage() {
+// Positions List Page
+function PositionsPage({ positions }) {
   return (
     <div className="min-h-screen bg-brand-cream">
       <Nav />
@@ -166,7 +26,7 @@ function PositionsPage() {
           <h2 className="font-serif text-3xl font-bold text-brand-dark mb-2">Open Positions</h2>
           <p className="text-gray-500 mb-8">Explore our current internship opportunities</p>
           <div className="grid md:grid-cols-2 gap-6">
-            {POSITIONS.map((position) => (
+            {positions.map((position) => (
               <Link to={`/job/${position.slug}`} key={position.id} className="block">
                 <article className={`bg-white border p-6 transition-all hover:shadow-lg hover:border-brand-teal h-full ${position.featured ? 'border-l-4 border-l-brand-teal' : 'border-gray-200'}`}>
                   {position.featured && <span className="inline-block bg-brand-teal text-white text-[10px] font-semibold px-2 py-0.5 uppercase mb-3">Featured</span>}
@@ -192,9 +52,9 @@ function PositionsPage() {
 }
 
 // Job Details Page
-function JobDetailsPage() {
+function JobDetailsPage({ positions }) {
   const { slug } = useParams()
-  const position = POSITIONS.find(p => p.slug === slug)
+  const position = positions.find(p => p.slug === slug)
 
   if (!position) return <div className="min-h-screen bg-brand-cream flex items-center justify-center"><p>Position not found</p></div>
 
@@ -245,10 +105,10 @@ function JobDetailsPage() {
 }
 
 // Application Form Page - Two Column with Sidebar
-function ApplyPage() {
+function ApplyPage({ positions }) {
   const { slug } = useParams()
   const navigate = useNavigate()
-  const position = POSITIONS.find(p => p.slug === slug)
+  const position = positions.find(p => p.slug === slug)
 
   const [resumeFile, setResumeFile] = useState(null)
   const [fileName, setFileName] = useState('')
@@ -400,9 +260,9 @@ function ApplyPage() {
 }
 
 // Success Page
-function SuccessPage() {
+function SuccessPage({ positions }) {
   const { slug } = useParams()
-  const position = POSITIONS.find(p => p.slug === slug)
+  const position = positions.find(p => p.slug === slug)
 
   return (
     <div className="min-h-screen bg-brand-cream">
@@ -506,13 +366,37 @@ function Footer() {
 
 // Main App with Routing
 function App() {
+  const [positions, setPositions] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    // Fetch positions from new API
+    axios.get('/api/positions')
+      .then(res => {
+        setPositions(res.data)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error('Failed to fetch positions:', err)
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-brand-cream">
+        <div className="w-8 h-8 border-4 border-brand-teal border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    )
+  }
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<PositionsPage />} />
-        <Route path="/job/:slug" element={<JobDetailsPage />} />
-        <Route path="/apply/:slug" element={<ApplyPage />} />
-        <Route path="/success/:slug" element={<SuccessPage />} />
+        <Route path="/" element={<PositionsPage positions={positions} />} />
+        <Route path="/job/:slug" element={<JobDetailsPage positions={positions} />} />
+        <Route path="/apply/:slug" element={<ApplyPage positions={positions} />} />
+        <Route path="/success/:slug" element={<SuccessPage positions={positions} />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
