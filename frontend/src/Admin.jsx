@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function Admin() {
-  const navigate = useNavigate()
   const [token, setToken] = useState(localStorage.getItem('adminToken'))
   const [authenticated, setAuthenticated] = useState(false)
   const [applications, setApplications] = useState([])
@@ -17,7 +15,7 @@ function Admin() {
 
   useEffect(() => {
     if (token) verifyToken()
-    else { setLoading(false); navigate('/admin/login') }
+    else { setLoading(false); window.location.href = '/admin/login' }
   }, [])
 
   useEffect(() => { if (authenticated) loadApplications() }, [authenticated])
