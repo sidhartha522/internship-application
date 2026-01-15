@@ -1,105 +1,80 @@
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import BackgroundBeams from './components/BackgroundBeams';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
-function AdminLogin({ onLogin }) {
-  const [credentials, setCredentials] = useState({ username: '', password: '' });
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+function AdminLogin() {
+  const navigate = useNavigate()
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
+    e.preventDefault()
+    setLoading(true)
+    setError('')
 
     try {
-      const response = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials)
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        onLogin(data.token);
-      } else {
-        setError(data.error || 'Invalid credentials');
-      }
+      const response = await axios.post('/api/admin/login', { username, password })
+      localStorage.setItem('adminToken', response.data.token)
+      navigate('/admin')
     } catch (err) {
-      setError('Failed to connect to server');
+      setError(err.response?.data?.error || 'Invalid credentials')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex items-center justify-center px-4">
-      <BackgroundBeams />
-      
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 w-full max-w-md"
-      >
-        <div className="bg-dark-card border border-dark-border rounded-2xl p-8 shadow-2xl">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold mb-2 glow-text">
-              <span className="text-accent">Ekthaa</span> Admin
-            </h1>
-            <p className="text-gray-400">Sign in to access dashboard</p>
-          </div>
+    <div className="min-h-screen bg-brand-cream flex items-center justify-center px-6">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-8">
+          <h1 className="font-serif text-3xl font-bold text-brand-dark">ekthaa</h1>
+          <p className="text-gray-500 mt-2">Admin Dashboard</p>
+        </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="bg-white border border-gray-200 p-8">
+          <h2 className="text-xl font-semibold text-brand-dark mb-6">Sign In</h2>
+
+          {error && <div className="bg-red-50 border border-red-200 text-red-700 p-3 mb-4 text-sm">{error}</div>}
+
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Username
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">Username</label>
               <input
                 type="text"
-                value={credentials.username}
-                onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
-                className="w-full px-4 py-3 bg-dark rounded-lg border border-dark-border text-white focus:outline-none focus:border-accent transition-colors"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
-                autoFocus
+                className="w-full px-3 py-2.5 border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal"
               />
             </div>
-
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Password
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
               <input
                 type="password"
-                value={credentials.password}
-                onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
-                className="w-full px-4 py-3 bg-dark rounded-lg border border-dark-border text-white focus:outline-none focus:border-accent transition-colors"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
+                className="w-full px-3 py-2.5 border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal"
               />
             </div>
-
-            {error && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-red-900/20 border border-red-500 rounded-lg p-3 text-red-400 text-sm"
-              >
-                {error}
-              </motion.div>
-            )}
-
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-brand-teal text-white py-3 font-semibold hover:bg-teal-600 disabled:opacity-60"
             >
               {loading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
         </div>
-      </motion.div>
+
+        <div className="text-center mt-6">
+          <a href="/" className="text-brand-teal text-sm hover:underline">Back to Careers</a>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default AdminLogin;
+export default AdminLogin

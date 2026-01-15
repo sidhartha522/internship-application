@@ -1,199 +1,436 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Developer Internship Application — Ekthaa</title>
+  <title>Careers — Ekthaa | Developer Internship Applications</title>
   <link rel="stylesheet" href="styles.css" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://ekthaa.app/favicon.ico" />
 </head>
+
 <body>
-  <!-- Added landing page with a Start button -->
-  <div id="landing" class="landing">
-    <div class="landing-content">
-      <p class="landing-text">We are looking for motivated students who want to learn, build real features, and work in a practical development environment.</p>
-      <p class="landing-text">This is <strong>a remote, unpaid internship</strong></p>
-      <p class="landing-text">with mentorship, structured tasks, and real project experience.</p>
-      <button id="startBtn">Start</button>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="https://ekthaa.app" class="nav-logo">
+        <span class="logo-text">Ekthaa</span>
+        <span class="logo-badge">Careers</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://ekthaa.app" class="nav-link">Home</a>
+        <a href="https://ekthaa.app/about" class="nav-link">About Us</a>
+        <a href="#positions" class="nav-link">Open Positions</a>
+      </div>
     </div>
-  </div>
+  </nav>
 
-  <!-- Wrapped the form in a container to toggle visibility -->
-  <div id="formContainer" class="hidden">
-      <form id="internForm" class="form" novalidate>
-        <!-- 1. Full name (two inputs) -->
-        <div class="form-row two-cols">
-          <div class="field">
-            <label>1. Full Name <span class="req">*</span></label>
-            <div class="split">
-              <input name="firstName" placeholder="First name" required />
-              <input name="lastName" placeholder="Last name" required />
+  <!-- Hero Section (IBM-style) -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">We're Hiring</div>
+      <h1 class="hero-title">Build Your Future with Ekthaa</h1>
+      <p class="hero-subtitle">
+        Join our team of innovators building the future of local commerce.
+        Real projects. Real mentorship. Real growth.
+      </p>
+      <div class="hero-actions">
+        <a href="#positions" class="btn btn-primary btn-large">View Open Positions</a>
+        <a href="https://ekthaa.app/about" class="btn btn-secondary btn-large">Learn About Us</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">3</span>
+        <span class="stat-label">Open Roles</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">Remote</span>
+        <span class="stat-label">Location</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">2 Months</span>
+        <span class="stat-label">Duration</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Why Join Section (Oracle-inspired) -->
+  <section class="why-join">
+    <div class="container">
+      <h2 class="section-title">Why Join Ekthaa?</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🚀</div>
+          <h3>Real Production Experience</h3>
+          <p>Work on a live platform serving actual users and businesses across Hyderabad.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">👨‍💻</div>
+          <h3>Mentorship & Code Reviews</h3>
+          <p>Direct guidance from founding engineers with hands-on feedback on your code.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📜</div>
+          <h3>Official Certificate</h3>
+          <p>Completion certificate signed by leadership upon successful program completion.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">💼</div>
+          <h3>Portfolio-Ready Project</h3>
+          <p>Build a deployed project you can showcase to future employers with real impact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions Section (IBM Card Grid) -->
+  <section id="positions" class="positions-section">
+    <div class="container">
+      <h2 class="section-title">Open Positions</h2>
+      <p class="section-subtitle">Explore our current opportunities</p>
+
+      <div class="positions-grid">
+        <!-- Position Card 1: AI Chatbot Developer -->
+        <article class="position-card featured">
+          <div class="position-badge">Featured</div>
+          <div class="position-header">
+            <h3 class="position-title">AI Chatbot Developer</h3>
+            <p class="position-type">Internship · Remote</p>
+          </div>
+          <p class="position-description">
+            Build an intelligent conversational AI assistant for product discovery using RAG, Python, and LLM APIs.
+          </p>
+          <div class="position-tags">
+            <span class="tag">Python</span>
+            <span class="tag">LLM/RAG</span>
+            <span class="tag">Flask</span>
+            <span class="tag">AI/ML</span>
+          </div>
+          <div class="position-meta">
+            <span><strong>Duration:</strong> 2 months</span>
+            <span><strong>Commitment:</strong> 15-20 hrs/week</span>
+          </div>
+          <button class="btn btn-primary position-apply" data-position="AI Chatbot Developer">Apply Now</button>
+        </article>
+
+        <!-- Position Card 2: Frontend Intern -->
+        <article class="position-card">
+          <div class="position-header">
+            <h3 class="position-title">Frontend Intern (React)</h3>
+            <p class="position-type">Internship · Remote</p>
+          </div>
+          <p class="position-description">
+            Work on modern React applications and learn from experienced developers building production UIs.
+          </p>
+          <div class="position-tags">
+            <span class="tag">React.js</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Tailwind</span>
+          </div>
+          <div class="position-meta">
+            <span><strong>Duration:</strong> 2 months</span>
+            <span><strong>Commitment:</strong> 15-20 hrs/week</span>
+          </div>
+          <button class="btn btn-primary position-apply" data-position="Frontend Intern (React)">Apply Now</button>
+        </article>
+
+        <!-- Position Card 3: Backend Intern -->
+        <article class="position-card">
+          <div class="position-header">
+            <h3 class="position-title">Backend Intern (Python + Flask)</h3>
+            <p class="position-type">Internship · Remote</p>
+          </div>
+          <p class="position-description">
+            Build scalable backend services and REST APIs using Python and Flask for our growing platform.
+          </p>
+          <div class="position-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Flask</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+          <div class="position-meta">
+            <span><strong>Duration:</strong> 2 months</span>
+            <span><strong>Commitment:</strong> 15-20 hrs/week</span>
+          </div>
+          <button class="btn btn-primary position-apply" data-position="Backend Intern (Python + Flask)">Apply
+            Now</button>
+        </article>
+
+        <!-- Position Card 4: Full Stack Intern -->
+        <article class="position-card">
+          <div class="position-header">
+            <h3 class="position-title">Full Stack Intern</h3>
+            <p class="position-type">Internship · Remote</p>
+          </div>
+          <p class="position-description">
+            Get hands-on experience with both frontend and backend development on our production stack.
+          </p>
+          <div class="position-tags">
+            <span class="tag">React</span>
+            <span class="tag">Python</span>
+            <span class="tag">Flask</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+          <div class="position-meta">
+            <span><strong>Duration:</strong> 2 months</span>
+            <span><strong>Commitment:</strong> 15-20 hrs/week</span>
+          </div>
+          <button class="btn btn-primary position-apply" data-position="Full Stack Intern (React + Python)">Apply
+            Now</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Form Section (Two-Column Layout like IBM) -->
+  <section id="apply" class="application-section hidden">
+    <div class="container">
+      <!-- Left Column: Form -->
+      <div class="application-layout">
+        <div class="application-form-container">
+          <div class="form-header">
+            <button class="back-btn" id="backToPositions">← Back to positions</button>
+            <h2 class="form-title">Apply for <span id="selectedPosition">Developer Internship</span></h2>
+          </div>
+
+          <form id="internForm" class="application-form" novalidate>
+            <!-- Section 1: Personal Information -->
+            <div class="form-section">
+              <h3 class="form-section-title">Personal Information</h3>
+
+              <div class="form-row two-cols">
+                <div class="form-group">
+                  <label>First Name <span class="required">*</span></label>
+                  <input name="firstName" type="text" placeholder="John" required />
+                </div>
+                <div class="form-group">
+                  <label>Last Name <span class="required">*</span></label>
+                  <input name="lastName" type="text" placeholder="Doe" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Email Address <span class="required">*</span></label>
+                <input name="email" type="email" placeholder="john.doe@example.com" required />
+                <span class="form-hint">We'll contact you via this email</span>
+              </div>
+
+              <div class="form-group">
+                <label>Phone Number <span class="required">*</span></label>
+                <input name="phone" type="tel" placeholder="+91 98765 43210" required />
+              </div>
+
+              <div class="form-group">
+                <label>Birth Date <span class="required">*</span></label>
+                <input name="birthDate" type="date" required />
+              </div>
+            </div>
+
+            <!-- Section 2: Professional Profiles -->
+            <div class="form-section">
+              <h3 class="form-section-title">Professional Profiles</h3>
+
+              <div class="form-group">
+                <label>LinkedIn Profile URL <span class="required">*</span></label>
+                <input name="linkedin" type="url" placeholder="https://linkedin.com/in/yourname" required />
+              </div>
+
+              <div class="form-group">
+                <label>GitHub Profile URL <span class="required">*</span></label>
+                <input name="github" type="url" placeholder="https://github.com/username" required />
+              </div>
+            </div>
+
+            <!-- Section 3: Role & Availability -->
+            <div class="form-section">
+              <h3 class="form-section-title">Role & Availability</h3>
+
+              <div class="form-group">
+                <label>Position Applying For <span class="required">*</span></label>
+                <select name="position" id="positionSelect" required>
+                  <option value="">Select a position</option>
+                  <option value="AI Chatbot Developer">AI Chatbot Developer</option>
+                  <option value="Frontend Intern (React)">Frontend Intern (React)</option>
+                  <option value="Backend Intern (Python + Flask)">Backend Intern (Python + Flask)</option>
+                  <option value="Full Stack Intern (React + Python)">Full Stack Intern (React + Python)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Rate your skill level (1-5) <span class="required">*</span></label>
+                <div class="rating-group">
+                  <label class="rating-option"><input type="radio" name="skill" value="1"
+                      required><span>1</span></label>
+                  <label class="rating-option"><input type="radio" name="skill" value="2"><span>2</span></label>
+                  <label class="rating-option"><input type="radio" name="skill" value="3"><span>3</span></label>
+                  <label class="rating-option"><input type="radio" name="skill" value="4"><span>4</span></label>
+                  <label class="rating-option"><input type="radio" name="skill" value="5"><span>5</span></label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Weekly Availability <span class="required">*</span></label>
+                <select name="availability" required>
+                  <option value="">Select your availability</option>
+                  <option value="5-10 hrs">5-10 hours/week</option>
+                  <option value="10-15 hrs">10-15 hours/week</option>
+                  <option value="15-20 hrs">15-20 hours/week</option>
+                  <option value="20+ hrs">20+ hours/week</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Can you commit for 1-2 months? <span class="required">*</span></label>
+                <div class="radio-group horizontal">
+                  <label><input type="radio" name="commit" value="Yes" required> Yes</label>
+                  <label><input type="radio" name="commit" value="No"> No</label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Current Status <span class="required">*</span></label>
+                <div class="radio-group">
+                  <label><input type="radio" name="employment" value="Student" required> Student</label>
+                  <label><input type="radio" name="employment" value="Recently Graduated"> Recently Graduated</label>
+                  <label><input type="radio" name="employment" value="Employed"> Employed</label>
+                  <label><input type="radio" name="employment" value="Self-Employed"> Self-Employed</label>
+                  <label><input type="radio" name="employment" value="Other"> Other</label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Available Start Date <span class="required">*</span></label>
+                <input name="startDate" type="date" required />
+              </div>
+            </div>
+
+            <!-- Section 4: Documents & Additional Info -->
+            <div class="form-section">
+              <h3 class="form-section-title">Documents & Additional Info</h3>
+
+              <div class="form-group">
+                <label>Upload Resume <span class="required">*</span></label>
+                <div class="file-upload" id="fileDrop">
+                  <input type="file" id="resumeFile" name="resume" accept=".pdf,.doc,.docx" />
+                  <div class="file-upload-content">
+                    <span class="file-icon">📄</span>
+                    <span class="file-text">Drag and drop your resume or <strong>browse</strong></span>
+                    <span class="file-formats">PDF, DOC, DOCX (Max 5MB)</span>
+                  </div>
+                </div>
+                <div id="fileName" class="file-name"></div>
+              </div>
+
+              <div class="form-group">
+                <label>Why should we select you? <span class="required">*</span></label>
+                <textarea name="why" rows="5"
+                  placeholder="Tell us about your experience, relevant projects, and what makes you a great fit for this role..."
+                  required></textarea>
+              </div>
+            </div>
+
+            <!-- Agreement & Submit -->
+            <div class="form-section">
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="agree" required />
+                  <span>I understand this is an <strong>unpaid internship</strong> and I will receive a completion
+                    certificate upon successful completion. <span class="required">*</span></span>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+                Submit Application
+              </button>
+              <div id="status" class="form-status"></div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right Column: Position Details Sidebar (IBM-style) -->
+        <aside class="position-sidebar">
+          <div class="sidebar-card">
+            <h4>Position Details</h4>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Type</span>
+              <span class="sidebar-value">Internship (Unpaid)</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Duration</span>
+              <span class="sidebar-value">2 Months</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Commitment</span>
+              <span class="sidebar-value">15-20 hrs/week</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Location</span>
+              <span class="sidebar-value">Remote</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Certificate</span>
+              <span class="sidebar-value highlight">✓ Provided</span>
             </div>
           </div>
-        </div>
 
-        <!-- 2. Email -->
-        <div class="form-row">
-          <div class="field">
-            <label>2. E-mail <span class="req">*</span><div class="hint">We'll contact you via this email.</div></label>
-            <div class="icon-input">
-              <span class="icon">✉</span>
-              <input name="email" type="email" placeholder="yourname@gmail.com" required />
-            </div>
+          <div class="sidebar-card">
+            <h4>What You'll Gain</h4>
+            <ul class="sidebar-list">
+              <li>Real production experience</li>
+              <li>Mentorship from founders</li>
+              <li>Portfolio-ready project</li>
+              <li>Official completion certificate</li>
+              <li>Potential future opportunities</li>
+            </ul>
           </div>
-        </div>
 
-        <!-- 3. Contact -->
-        <div class="form-row">
-          <div class="field">
-            <label>3. Contact Number <span class="req">*</span></label>
-            <div class="icon-input">
-              <span class="icon">📞</span>
-              <input name="phone" type="tel" placeholder="+91 98765 43210" required />
-            </div>
+          <div class="sidebar-card contact">
+            <h4>Questions?</h4>
+            <p>Reach out to us at</p>
+            <a href="mailto:hr@ekthaa.app" class="sidebar-email">hr@ekthaa.app</a>
           </div>
-        </div>
+        </aside>
+      </div>
+    </div>
+  </section>
 
-        <!-- 4. LinkedIn -->
-        <div class="form-row">
-          <div class="field">
-            <label>4. LinkedIn Profile URL <span class="req">*</span></label>
-            <input name="linkedin" type="url" placeholder="https://www.linkedin.com/in/yourname" required />
-          </div>
-        </div>
+  <!-- Thank You Section -->
+  <section id="thankYouSection" class="thank-you-section hidden">
+    <div class="thank-you-container">
+      <div class="success-icon">✓</div>
+      <h1>Application Submitted!</h1>
+      <p class="main-message">Thank you for your interest in joining Ekthaa.</p>
+      <p class="sub-message">We've received your application and will review it carefully. If shortlisted, you'll hear
+        from us within 5-7 business days.</p>
+      <p class="footer-message">Keep an eye on your inbox for next steps.</p>
+      <a href="https://ekthaa.app" class="btn btn-primary">Visit Ekthaa</a>
+    </div>
+  </section>
 
-        <!-- 5. GitHub -->
-        <div class="form-row">
-          <div class="field">
-            <label>5. GitHub Profile URL <span class="req">*</span></label>
-            <input name="github" type="url" placeholder="https://github.com/username" required />
-          </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="logo-text">Ekthaa</span>
+          <p>Building the future of local commerce.</p>
         </div>
-
-        <!-- 6. Birth date -->
-        <div class="form-row">
-          <div class="field">
-            <label>6. Birth Date <span class="req">*</span></label>
-            <input name="birthDate" type="date" required />
-          </div>
+        <div class="footer-links">
+          <a href="https://ekthaa.app">Home</a>
+          <a href="https://ekthaa.app/about">About</a>
+          <a href="https://ekthaa.app/privacy">Privacy Policy</a>
+          <a href="mailto:hr@ekthaa.app">Contact</a>
         </div>
-
-        <!-- 7. Position -->
-        <div class="form-row">
-          <div class="field">
-            <label>7. What position are you applying for? <span class="req">*</span></label>
-            <select name="position" required>
-              <option value="">Select position</option>
-              <option>Backend Intern (Python + Flask)</option>
-              <option>Frontend Intern (React)</option>
-              <option>Full-Stack Intern (React + Python)</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- 8. Skill rating 1-5 (buttons) -->
-        <div class="form-row">
-          <div class="field">
-            <label>8. Rate your skill level (1–5) <span class="req">*</span></label>
-            <div class="rating" role="radiogroup" aria-label="Skill level">
-              <label><input type="radio" name="skill" value="1" required><span>1</span></label>
-              <label><input type="radio" name="skill" value="2"><span>2</span></label>
-              <label><input type="radio" name="skill" value="3"><span>3</span></label>
-              <label><input type="radio" name="skill" value="4"><span>4</span></label>
-              <label><input type="radio" name="skill" value="5"><span>5</span></label>
-            </div>
-          </div>
-        </div>
-
-        <!-- 9. Weekly availability -->
-        <div class="form-row">
-          <div class="field">
-            <label>9. Weekly Availability? <span class="req">*</span></label>
-            <select name="availability" required>
-              <option value="">Select...</option>
-              <option>5–10 hrs</option>
-              <option>10–15 hrs</option>
-              <option>15–20 hrs</option>
-              <option>Depends on schedule</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- 10. Commit 1-2 months (Yes/No) -->
-        <div class="form-row">
-          <div class="field">
-            <label>10. Can you commit for 1–2 months? <span class="req">*</span></label>
-            <div class="horizontal-radio">
-              <label><input type="radio" name="commit" value="Yes" required> Yes</label>
-              <label><input type="radio" name="commit" value="No"> No</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- 11. Employment status (list) -->
-        <div class="form-row">
-          <div class="field">
-            <label>11. What is your current employment status? <span class="req">*</span></label>
-            <div class="stacked-radio">
-              <label><input type="radio" name="employment" value="Employed" required> Employed</label>
-              <label><input type="radio" name="employment" value="Recently Graduated"> Recently Graduated</label>
-              <label><input type="radio" name="employment" value="Self-Employed"> Self-Employed</label>
-              <label><input type="radio" name="employment" value="Student"> Student</label>
-              <label><input type="radio" name="employment" value="Other"> Other</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- 12. Resume upload (drop area) -->
-        <div class="form-row">
-          <div class="field">
-            <label>12. Upload Your Resume <span class="req">*</span><div class="hint">Only PDF, DOC, DOCX, PPTX. (If you want simpler flow, paste a public link in GitHub/LinkedIn.)</div></label>
-            <div class="file-drop" id="fileDrop">
-              <input type="file" id="resumeFile" name="resume" accept=".pdf,.doc,.docx,.ppt,.pptx" />
-              <div class="drop-text">Drop files here or click to choose</div>
-            </div>
-            <div id="fileName" class="file-name"></div>
-          </div>
-        </div>
-
-        <!-- 13. Why should we select you? -->
-        <div class="form-row">
-          <div class="field">
-            <label>13. Why should we select you? <span class="req">*</span><div class="hint">Add anything else you'd like us to know</div></label>
-            <textarea name="why" rows="6" required></textarea>
-          </div>
-        </div>
-
-        <!-- 14. Available start date -->
-        <div class="form-row">
-          <div class="field">
-            <label>14. Available start date <span class="req">*</span></label>
-            <input name="startDate" type="date" required />
-          </div>
-        </div>
-
-        <!-- 15. Agree unpaid internship -->
-        <div class="form-row">
-          <div class="field">
-            <label>15. Do you agree this is an unpaid internship? <span class="req">*</span></label>
-            <div class="horizontal-radio">
-              <label><input type="radio" name="agree" value="Yes" required> Yes</label>
-              <label><input type="radio" name="agree" value="No"> No</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- final actions -->
-        <div class="form-row actions-row">
-          <button id="submitBtn" type="submit">Submit Application</button>
-          <div id="status" class="status" aria-live="polite"></div>
-        </div>
-      </form>
-
-      <div id="thankYouMessage" class="hidden">
-            <p>Thank you for submitting your application! We will be sending a mail within 1 week.</p>
-          </div>
-  </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Ekthaa. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
+
 </html>
