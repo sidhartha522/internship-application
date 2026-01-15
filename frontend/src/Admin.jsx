@@ -29,7 +29,7 @@ function Admin() {
     } catch {
       localStorage.removeItem('adminToken')
       setToken(null)
-      navigate('/admin/login')
+      window.location.href = '/admin/login'
     } finally {
       setLoading(false)
     }
@@ -39,7 +39,7 @@ function Admin() {
     localStorage.removeItem('adminToken')
     setToken(null)
     setAuthenticated(false)
-    navigate('/admin/login')
+    window.location.href = '/admin/login'
   }
 
   const loadApplications = async () => {
