@@ -415,7 +415,7 @@ function Footer() {
           {/* Brand */}
           <div>
             <span className="font-serif text-2xl font-bold block mb-3">ekthaa</span>
-            <p className="text-gray-400 text-sm leading-relaxed">Building the future of local commerce through innovation and community.</p>
+            <p className="text-gray-400 text-sm leading-relaxed">Connecting you with the best local businesses and services in your community.</p>
           </div>
 
           {/* Company */}
@@ -425,7 +425,7 @@ function Footer() {
               <a href="https://ekthaa.app" className="block text-gray-400 hover:text-white text-sm transition-colors">Home</a>
               <a href="https://ekthaa.app/about" className="block text-gray-400 hover:text-white text-sm transition-colors">About Us</a>
               <a href="https://ekthaa.app/careers" className="block text-gray-400 hover:text-white text-sm transition-colors">Careers</a>
-              <a href="https://ekthaa.app/blog" className="block text-gray-400 hover:text-white text-sm transition-colors">Blog</a>
+              <a href="https://ekthaa.app/products" className="block text-gray-400 hover:text-white text-sm transition-colors">Our Products</a>
             </div>
           </div>
 
@@ -435,18 +435,26 @@ function Footer() {
             <div className="space-y-2">
               <a href="mailto:hr@ekthaa.app" className="block text-gray-400 hover:text-white text-sm transition-colors">Contact HR</a>
               <a href="mailto:support@ekthaa.app" className="block text-gray-400 hover:text-white text-sm transition-colors">General Support</a>
-              <a href="https://ekthaa.app/faq" className="block text-gray-400 hover:text-white text-sm transition-colors">FAQ</a>
+              <a href="https://ekthaa.app/delete-account" className="block text-gray-400 hover:text-white text-sm transition-colors">Delete Account</a>
             </div>
           </div>
 
           {/* Connect */}
           <div>
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Connect</h4>
-            <div className="space-y-2">
-              <a href="https://linkedin.com/company/ekthaa" target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-white text-sm transition-colors">LinkedIn</a>
-              <a href="https://twitter.com/ekthaa" target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-white text-sm transition-colors">Twitter</a>
-              <a href="https://instagram.com/ekthaa" target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-white text-sm transition-colors">Instagram</a>
+            <div className="flex gap-4 mb-4">
+              <a href="https://www.linkedin.com/company/ekthaa/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white text-xl transition-colors">
+                <i className="fa-brands fa-linkedin"></i>
+              </a>
+              <a href="https://www.instagram.com/ekthaa.ai?utm_source=qr&igsh=MW1iNGU2ZG1lYWR6dg==" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white text-xl transition-colors">
+                <i className="fa-brands fa-instagram"></i>
+              </a>
             </div>
+            <p className="text-gray-400 text-xs mb-3">Download the ekthaa App</p>
+            <a href="https://play.google.com/store/apps/details?id=com.ekthaa.business" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-2 text-xs transition-colors">
+              <i className="fa-brands fa-google-play text-base"></i>
+              <span>Play Store</span>
+            </a>
           </div>
         </div>
 
@@ -455,7 +463,7 @@ function Footer() {
           <p className="text-gray-500 text-sm">© 2026 ekthaa. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="https://ekthaa.app/privacy" className="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
-            <a href="https://ekthaa.app/terms" className="text-gray-500 hover:text-white text-sm transition-colors">Terms of Service</a>
+            <a href="https://ekthaa.app/terms" className="text-gray-500 hover:text-white text-sm transition-colors">Terms of Use</a>
           </div>
         </div>
       </div>
