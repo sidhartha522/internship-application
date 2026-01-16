@@ -26,7 +26,7 @@ function PositionsPage({ positions }) {
           <h2 className="font-serif text-3xl font-bold text-brand-dark mb-2">Open Positions</h2>
           <p className="text-gray-500 mb-8">Explore our current internship opportunities</p>
           <div className="grid md:grid-cols-2 gap-6">
-            {positions.map((position) => (
+            {Array.isArray(positions) && positions.map((position) => (
               <Link to={`/job/${position.slug}`} key={position.id} className="block">
                 <article className={`bg-white border p-6 transition-all hover:shadow-lg hover:border-brand-teal h-full ${position.featured ? 'border-l-4 border-l-brand-teal' : 'border-gray-200'}`}>
                   {position.featured && <span className="inline-block bg-brand-teal text-white text-[10px] font-semibold px-2 py-0.5 uppercase mb-3">Featured</span>}
@@ -34,7 +34,7 @@ function PositionsPage({ positions }) {
                   <div className="flex gap-4 text-sm text-gray-500 mb-3"><span>{position.type}</span><span>{position.location}</span></div>
                   <p className="text-gray-600 text-sm mb-4">{position.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {position.tags.map((tag, idx) => <span key={idx} className="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1">{tag}</span>)}
+                    {(position.tags || []).map((tag, idx) => <span key={idx} className="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1">{tag}</span>)}
                   </div>
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <span className="text-sm text-gray-500">{position.duration} | {position.commitment}</span>
@@ -54,7 +54,7 @@ function PositionsPage({ positions }) {
 // Job Details Page
 function JobDetailsPage({ positions }) {
   const { slug } = useParams()
-  const position = positions.find(p => p.slug === slug)
+  const position = Array.isArray(positions) ? positions.find(p => p.slug === slug) : null
 
   if (!position) return <div className="min-h-screen bg-brand-cream flex items-center justify-center"><p>Position not found</p></div>
 
@@ -77,9 +77,9 @@ function JobDetailsPage({ positions }) {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_320px] gap-10">
           <div className="space-y-8">
             <div><h2 className="text-xl font-bold text-brand-dark mb-4">Introduction</h2><p className="text-gray-700">{position.introduction}</p></div>
-            <div><h2 className="text-xl font-bold text-brand-dark mb-4">Your Role and Responsibilities</h2><ul className="space-y-3">{position.responsibilities.map((item, i) => <li key={i} className="flex gap-3 text-gray-700"><span className="text-brand-teal font-bold">•</span><span>{item}</span></li>)}</ul></div>
-            <div><h2 className="text-xl font-bold text-brand-dark mb-4">Required Technical and Professional Expertise</h2><ul className="space-y-3">{position.requirements.map((item, i) => <li key={i} className="flex gap-3 text-gray-700"><span className="text-brand-teal font-bold">•</span><span>{item}</span></li>)}</ul></div>
-            {position.preferred && <div><h2 className="text-xl font-bold text-brand-dark mb-4">Preferred Technical and Professional Expertise</h2><ul className="space-y-3">{position.preferred.map((item, i) => <li key={i} className="flex gap-3 text-gray-700"><span className="text-gray-400 font-bold">•</span><span>{item}</span></li>)}</ul></div>}
+            <div><h2 className="text-xl font-bold text-brand-dark mb-4">Your Role and Responsibilities</h2><ul className="space-y-3">{(position.responsibilities || []).map((item, i) => <li key={i} className="flex gap-3 text-gray-700"><span className="text-brand-teal font-bold">•</span><span>{item}</span></li>)}</ul></div>
+            <div><h2 className="text-xl font-bold text-brand-dark mb-4">Required Technical and Professional Expertise</h2><ul className="space-y-3">{(position.requirements || []).map((item, i) => <li key={i} className="flex gap-3 text-gray-700"><span className="text-brand-teal font-bold">•</span><span>{item}</span></li>)}</ul></div>
+            {position.preferred && Array.isArray(position.preferred) && <div><h2 className="text-xl font-bold text-brand-dark mb-4">Preferred Technical and Professional Expertise</h2><ul className="space-y-3">{position.preferred.map((item, i) => <li key={i} className="flex gap-3 text-gray-700"><span className="text-gray-400 font-bold">•</span><span>{item}</span></li>)}</ul></div>}
             <div className="pt-6 border-t border-gray-200"><Link to={`/apply/${position.slug}`} className="inline-block bg-brand-teal text-white px-8 py-3 font-semibold hover:bg-teal-600">Apply now</Link></div>
           </div>
           <aside className="space-y-6">
@@ -108,7 +108,7 @@ function JobDetailsPage({ positions }) {
 function ApplyPage({ positions }) {
   const { slug } = useParams()
   const navigate = useNavigate()
-  const position = positions.find(p => p.slug === slug)
+  const position = Array.isArray(positions) ? positions.find(p => p.slug === slug) : null
 
   const [resumeFile, setResumeFile] = useState(null)
   const [fileName, setFileName] = useState('')
@@ -262,7 +262,7 @@ function ApplyPage({ positions }) {
 // Success Page
 function SuccessPage({ positions }) {
   const { slug } = useParams()
-  const position = positions.find(p => p.slug === slug)
+  const position = Array.isArray(positions) ? positions.find(p => p.slug === slug) : null
 
   return (
     <div className="min-h-screen bg-brand-cream">
@@ -373,7 +373,7 @@ function App() {
     // Fetch positions from new API
     axios.get('/api/positions')
       .then(res => {
-        setPositions(res.data)
+        setPositions(Array.isArray(res.data) ? res.data : [])
         setLoading(false)
       })
       .catch(err => {

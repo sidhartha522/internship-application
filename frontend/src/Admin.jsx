@@ -125,7 +125,7 @@ function Admin() {
     try {
       // Roles are public GET, but we can assume we want to ensure we're connected
       const response = await axios.get('/api/positions')
-      setRoles(response.data)
+      setRoles(Array.isArray(response.data) ? response.data : [])
     } catch (err) {
       setRolesError('Failed to load roles')
     } finally {
@@ -136,10 +136,10 @@ function Admin() {
   const handleEditRole = (role) => {
     setRoleForm({
       ...role,
-      tags: role.tags ? role.tags.join(', ') : '',
-      responsibilities: role.responsibilities ? role.responsibilities.join('\n') : '',
-      requirements: role.requirements ? role.requirements.join('\n') : '',
-      preferred: role.preferred ? role.preferred.join('\n') : ''
+      tags: Array.isArray(role.tags) ? role.tags.join(', ') : '',
+      responsibilities: Array.isArray(role.responsibilities) ? role.responsibilities.join('\n') : '',
+      requirements: Array.isArray(role.requirements) ? role.requirements.join('\n') : '',
+      preferred: Array.isArray(role.preferred) ? role.preferred.join('\n') : ''
     })
   }
 
@@ -352,7 +352,7 @@ function Admin() {
                       </div>
                       <p className="text-gray-600 text-sm mb-3">{role.description}</p>
                       <div className="flex flex-wrap gap-2 mb-3">
-                        {role.tags.map((tag, i) => <span key={i} className="bg-gray-50 text-gray-500 text-xs px-2 py-1">{tag}</span>)}
+                        {(role.tags || []).map((tag, i) => <span key={i} className="bg-gray-50 text-gray-500 text-xs px-2 py-1">{tag}</span>)}
                       </div>
                       <div className="text-xs text-gray-400">
                         {role.location} • {role.duration} • {role.commitment}
