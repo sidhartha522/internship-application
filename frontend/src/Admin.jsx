@@ -68,7 +68,7 @@ function Admin() {
     setAppError(null)
     try {
       const response = await axios.get('/api/applications', { headers: { Authorization: `Bearer ${token}` } })
-      setApplications(response.data)
+      setApplications(Array.isArray(response.data) ? response.data : [])
     } catch (err) {
       if (err.response?.status === 401) handleLogout()
       else setAppError(err.response?.data?.error || 'Failed to load applications')
