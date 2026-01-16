@@ -387,11 +387,6 @@ app.get('/admin.html', (req, res, next) => {
 // Serve old static files for backward compatibility
 app.use('/old', express.static('.'));
 
-// All other routes serve the React app (including /admin route)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
-});
-
 // Positions Management
 const POSITIONS_FILE = path.join(__dirname, 'positions.json');
 
@@ -476,6 +471,12 @@ app.delete('/api/positions/:id', authenticateAdmin, (req, res) => {
   } else {
     res.status(500).json({ error: 'Failed to delete position' });
   }
+});
+
+// All other routes serve the React app (including /admin route)
+// This MUST be after all API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {
