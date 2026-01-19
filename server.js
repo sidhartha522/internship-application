@@ -473,13 +473,7 @@ app.delete('/api/positions/:id', authenticateAdmin, (req, res) => {
   }
 });
 
-// All other routes serve the React app (including /admin route)
-// This MUST be after all API routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
-});
-
-// Redirect endpoints for social media
+// Redirect endpoints for social media (MUST be before catch-all route)
 app.get('/app', (req, res) => {
   res.redirect(301, 'https://play.google.com/store/apps/details?id=com.ekthaa.business');
 });
@@ -490,6 +484,12 @@ app.get('/download', (req, res) => {
 
 app.get('/playstore', (req, res) => {
   res.redirect(301, 'https://play.google.com/store/apps/details?id=com.ekthaa.business');
+});
+
+// All other routes serve the React app (including /admin route)
+// This MUST be after all API routes and specific routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {
