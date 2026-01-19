@@ -479,6 +479,19 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
 });
 
+// Redirect endpoints for social media
+app.get('/app', (req, res) => {
+  res.redirect(301, 'https://play.google.com/store/apps/details?id=com.ekthaa.business');
+});
+
+app.get('/download', (req, res) => {
+  res.redirect(301, 'https://play.google.com/store/apps/details?id=com.ekthaa.business');
+});
+
+app.get('/playstore', (req, res) => {
+  res.redirect(301, 'https://play.google.com/store/apps/details?id=com.ekthaa.business');
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   const os = require('os');
   const networkInterfaces = os.networkInterfaces();

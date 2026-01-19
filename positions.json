@@ -169,5 +169,112 @@
             "Can give 30–60 minutes a day consistently",
             "High energy and out-of-the-box thinking"
         ]
+    },
+    {
+        "id": 1768768879266,
+        "title": "Social Media & Content Intern",
+        "slug": "social-media-content-intern",
+        "type": "Internship",
+        "location": "Remote",
+        "duration": "2 months",
+        "commitment": "7-14 hrs/week",
+        "description": "Join Ekthaa as a Social Media & Content Intern and help us grow our startup using AI tools, creative content, and social media. If you can do any one skill from editing, writing, or content creation you're in.",
+        "tags": [
+            "startup",
+            "internship",
+            "social media",
+            "content creation",
+            "AI tools",
+            "marketing",
+            "growth",
+            "instagram",
+            "linkedin",
+            "reels",
+            "creators",
+            "unpaid internship"
+        ],
+        "featured": true,
+        "introduction": "Ekthaa is building a platform to help local businesses get discovered and grow. We're looking for smart, creative, and hungry-to-learn interns who want to build real startup experience in content, AI tools, and social media.\nThis is a zero-pressure, flexible, unpaid internship where you can contribute just 1–2 hours a day. You don't need to know everything - if you're good at any one skill like editing, writing, or content creation, you can join.\nIf you perform exceptionally well, you may be considered for a future paid role when we scale.",
+        "responsibilities": [
+            "Create content for Instagram, LinkedIn, X(Twitter), or Reddit",
+            "Use AI tools to generate images, videos, or content",
+            "Write posts or captions for social media",
+            "Edit simple images or videos (Canva or similar)",
+            "Research trends and suggest content ideas",
+            "Help grow Ekthaa's social media presence",
+            "Experiment with creative and out-of-the-box  content ideas",
+            "Write and post engaging comments under Instagram reels and other social media posts for growth and visibility",
+            "(ANY ONE)"
+        ],
+        "requirements": [
+            "Can commit 1–2 hours per day",
+            "Good English communication (basic is enough)",
+            "Must have at least one skill from writing, editing, or content creation",
+            "Interest in startups, content, or AI tools",
+            "Self-motivated and consistent",
+            "Laptop or mobile with internet"
+        ],
+        "preferred": [
+            "Image or video editing using AI tools",
+            "Familiar with AI tools like Nano Banana or similar free AI tools",
+            "Writing LinkedIn posts",
+            "Writing X (Twitter) posts",
+            "Writing Reddit posts",
+            "Making Instagram reels",
+            "Understanding Instagram trends",
+            "Canva or basic editing tools",
+            "Creative thinking and idea generation",
+            "(ANY ONE SKILL IS ENOUGH)"
+        ]
+    },
+    {
+        "id": 1768769512645,
+        "title": "Business Calling & Communication Intern (Direct Joining)",
+        "slug": "business-communication-intern",
+        "type": "Internship",
+        "location": "Remote",
+        "duration": "2 months",
+        "commitment": "Flexible - Your pace (1 call per week / 1 call per month / or more)",
+        "description": "A zero-pressure, direct-joining internship at Ekthaa for introverts who want to build confidence by talking to real business owners. No interview. No resume. No targets.",
+        "tags": [
+            "internship",
+            "communication",
+            "sales",
+            "startup",
+            "business",
+            "calling",
+            "confidence",
+            "growth",
+            "direct joining",
+            "no interview",
+            "unpaid internship",
+            "student",
+            "introvert"
+        ],
+        "featured": true,
+        "introduction": "If you're an introvert, you're already hired.\nAt Ekthaa, we're building a platform to help local businesses grow and at the same time, we want to help you grow your confidence.\nThis is a direct joining internship:\nNo interview\nNo resume\nNo drama\nJust onboarding and starting\nThis is an unpaid internship, but it gives you something most paid internships don't:\nA safe, real environment to become comfortable talking to people.\nImportant:\nWe do not force you to take calls.\nYou decide your pace. You can take:\n1 call per week\n1 call per month\nOr more totally your choice\nHow it works:\nYou don't have to call anyone\nBusinesses will call you\nYour role is to talk to them and explain Ekthaa\nIf you perform extraordinarily well, there is a real chance of getting hired in the future.\nNo pressure. No targets. No forcing.\nJust real growth, at your speed.",
+        "responsibilities": [
+            "Answer calls from business owners",
+            "Explain Ekthaa in a simple and clear way",
+            "Help businesses understand how the platform works",
+            "Communicate politely and professionally",
+            "Learn and improve your communication skills over time",
+            "Represent Ekthaa in conversations"
+        ],
+        "requirements": [
+            "Willingness to talk to people (even if you're nervous)",
+            "Basic English or Telugu/Hindi communication is enough",
+            "Smartphone and internet connection",
+            "Can give a small amount of time occasionally",
+            "No prior experience needed",
+            "Introverts and shy people are welcome"
+        ],
+        "preferred": [
+            "Interest in communication and sales",
+            "Willingness to improve confidence",
+            "Basic understanding of apps or startups",
+            "Calm and patient nature",
+            "Curiosity to learn how real startups work"
+        ]
     }
 ]
