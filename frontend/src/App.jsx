@@ -69,7 +69,11 @@ function JobDetailsPage({ positions }) {
               <h1 className="font-serif text-3xl font-bold text-brand-dark mb-2">{position.title}</h1>
               <div className="flex flex-wrap gap-4 text-sm text-gray-600"><span>{position.location}</span><span>|</span><span>{position.type}</span><span>|</span><span>{position.duration}</span></div>
             </div>
-            <Link to={`/apply/${position.slug}`} className="bg-brand-teal text-white px-8 py-3 font-semibold hover:bg-teal-600">Apply now</Link>
+            {position.customApplyUrl ? (
+              <a href={position.customApplyUrl} target="_blank" rel="noopener noreferrer" className="bg-brand-teal text-white px-8 py-3 font-semibold hover:bg-teal-600">Apply now</a>
+            ) : (
+              <Link to={`/apply/${position.slug}`} className="bg-brand-teal text-white px-8 py-3 font-semibold hover:bg-teal-600">Apply now</Link>
+            )}
           </div>
         </div>
       </header>
@@ -80,7 +84,13 @@ function JobDetailsPage({ positions }) {
             <div><h2 className="text-xl font-bold text-brand-dark mb-4">Your Role and Responsibilities</h2><ul className="space-y-3">{(position.responsibilities || []).map((item, i) => <li key={i} className="flex gap-3 text-gray-700"><span className="text-brand-teal font-bold">•</span><span>{item}</span></li>)}</ul></div>
             <div><h2 className="text-xl font-bold text-brand-dark mb-4">Required Technical and Professional Expertise</h2><ul className="space-y-3">{(position.requirements || []).map((item, i) => <li key={i} className="flex gap-3 text-gray-700"><span className="text-brand-teal font-bold">•</span><span>{item}</span></li>)}</ul></div>
             {position.preferred && Array.isArray(position.preferred) && <div><h2 className="text-xl font-bold text-brand-dark mb-4">Preferred Technical and Professional Expertise</h2><ul className="space-y-3">{position.preferred.map((item, i) => <li key={i} className="flex gap-3 text-gray-700"><span className="text-gray-400 font-bold">•</span><span>{item}</span></li>)}</ul></div>}
-            <div className="pt-6 border-t border-gray-200"><Link to={`/apply/${position.slug}`} className="inline-block bg-brand-teal text-white px-8 py-3 font-semibold hover:bg-teal-600">Apply now</Link></div>
+            <div className="pt-6 border-t border-gray-200">
+              {position.customApplyUrl ? (
+                <a href={position.customApplyUrl} target="_blank" rel="noopener noreferrer" className="inline-block bg-brand-teal text-white px-8 py-3 font-semibold hover:bg-teal-600">Apply now</a>
+              ) : (
+                <Link to={`/apply/${position.slug}`} className="inline-block bg-brand-teal text-white px-8 py-3 font-semibold hover:bg-teal-600">Apply now</Link>
+              )}
+            </div>
           </div>
           <aside className="space-y-6">
             <div className="bg-white border border-gray-200 p-6">
@@ -95,7 +105,11 @@ function JobDetailsPage({ positions }) {
               <h3 className="text-sm font-semibold text-brand-dark uppercase tracking-wide mb-4">What You Will Gain</h3>
               <ul className="space-y-3">{['Real production experience', 'Mentorship from founders', 'Portfolio-ready project', 'Official completion certificate'].map((item, i) => <li key={i} className="flex items-start gap-2 text-sm text-gray-600"><span className="w-1.5 h-1.5 bg-brand-teal mt-1.5"></span>{item}</li>)}</ul>
             </div>
-            <Link to={`/apply/${position.slug}`} className="block w-full bg-brand-teal text-white py-3 font-semibold text-center hover:bg-teal-600">Apply now</Link>
+            {position.customApplyUrl ? (
+              <a href={position.customApplyUrl} target="_blank" rel="noopener noreferrer" className="block w-full bg-brand-teal text-white py-3 font-semibold text-center hover:bg-teal-600">Apply now</a>
+            ) : (
+              <Link to={`/apply/${position.slug}`} className="block w-full bg-brand-teal text-white py-3 font-semibold text-center hover:bg-teal-600">Apply now</Link>
+            )}
           </aside>
         </div>
       </section>
@@ -268,12 +282,36 @@ function SuccessPage({ positions }) {
     <div className="min-h-screen bg-brand-cream">
       <Nav />
       <section className="min-h-[70vh] flex items-center justify-center py-16 px-6">
-        <div className="text-center max-w-md">
+        <div className="text-center max-w-2xl">
           <div className="w-16 h-16 bg-brand-teal flex items-center justify-center mx-auto mb-6"><svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg></div>
           <h1 className="font-serif text-3xl font-bold text-brand-dark mb-3">Application Submitted</h1>
           <p className="text-gray-600 mb-2">Thank you for applying for <strong>{position?.title || 'the position'}</strong>.</p>
-          <p className="text-gray-500 text-sm mb-6">We will review your application and get back to you within 5-7 business days.</p>
-          <Link to="/" className="inline-block bg-brand-teal text-white px-6 py-3 font-semibold hover:bg-teal-600">View More Positions</Link>
+          <p className="text-gray-500 text-sm mb-8">We will review your application and get back to you within 5-7 business days.</p>
+          
+          <div className="bg-white border-2 border-brand-teal p-6 mb-6 text-left">
+            <p className="text-gray-700 mb-4 leading-relaxed">
+              You're not just applying for an internship - you're applying to build with us.
+            </p>
+            <p className="text-gray-700 mb-2">
+              👉 Download <strong>Ekthaa Business</strong>, explore the app, and share your honest feedback or improvement ideas with us at <a href="https://instagram.com/sidstartsup" target="_blank" rel="noopener noreferrer" className="text-brand-teal font-semibold hover:underline">@sidstartsup</a> or <a href="https://instagram.com/ekthaa.ai" target="_blank" rel="noopener noreferrer" className="text-brand-teal font-semibold hover:underline">@ekthaa.ai</a> on Instagram.
+            </p>
+            <p className="text-gray-700 mb-4">
+              🚀 Thoughtful and practical insights will significantly improve your chances of getting selected.
+            </p>
+            <a 
+              href="https://play.google.com/store/apps/details?id=com.ekthaa.business" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-brand-teal text-white px-6 py-3 font-semibold hover:bg-teal-600"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626c.547.317.547 1.046 0 1.364l-2.807 1.626-2.524-2.524 2.524-2.092zM5.864 2.658L16.802 8.99 14.5 11.293 5.864 2.658z"/>
+              </svg>
+              Download Ekthaa Business App
+            </a>
+          </div>
+          
+          <Link to="/" className="inline-block bg-gray-600 text-white px-6 py-3 font-semibold hover:bg-gray-700">View More Positions</Link>
         </div>
       </section>
       <Footer />

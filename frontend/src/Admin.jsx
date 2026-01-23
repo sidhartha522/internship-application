@@ -139,7 +139,8 @@ function Admin() {
       tags: Array.isArray(role.tags) ? role.tags.join(', ') : '',
       responsibilities: Array.isArray(role.responsibilities) ? role.responsibilities.join('\n') : '',
       requirements: Array.isArray(role.requirements) ? role.requirements.join('\n') : '',
-      preferred: Array.isArray(role.preferred) ? role.preferred.join('\n') : ''
+      preferred: Array.isArray(role.preferred) ? role.preferred.join('\n') : '',
+      customApplyUrl: role.customApplyUrl || ''
     })
   }
 
@@ -147,7 +148,7 @@ function Admin() {
     setRoleForm({
       title: '', slug: '', type: 'Internship', location: 'Remote', duration: '2 months', commitment: '15-20 hrs/week',
       description: '', tags: '', featured: false, introduction: '',
-      responsibilities: '', requirements: '', preferred: ''
+      responsibilities: '', requirements: '', preferred: '', customApplyUrl: ''
     })
   }
 
@@ -445,6 +446,18 @@ function Admin() {
                     <span className="text-sm font-medium text-brand-dark">Featured Position</span>
                   </label>
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Custom Apply Now URL (Optional)</label>
+                <input 
+                  type="url" 
+                  value={roleForm.customApplyUrl || ''} 
+                  onChange={e => setRoleForm({ ...roleForm, customApplyUrl: e.target.value })} 
+                  placeholder="https://docs.google.com/forms/..." 
+                  className="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:border-brand-teal" 
+                />
+                <p className="text-xs text-gray-500 mt-1">If provided, "Apply Now" button will redirect to this URL instead of the internal form</p>
               </div>
 
               <div className="pt-4 border-t border-gray-200 flex justify-end gap-3">

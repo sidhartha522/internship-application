@@ -21,6 +21,14 @@ document.addEventListener('DOMContentLoaded', function () {
   applyButtons.forEach(button => {
     button.addEventListener('click', function () {
       const position = this.getAttribute('data-position');
+      
+      // Check if this is the Business Calling Intern position
+      if (position === 'Business Calling & Communication Intern (Direct Joining)') {
+        // Redirect to external Google Form
+        window.open('https://docs.google.com/forms/d/e/1FAIpQLSdZheaiOL34vqa3slmhEO70GXoSatC8FSx7Ek52RTl1N7t-LA/viewform?usp=header', '_blank');
+        return;
+      }
+      
       showApplicationForm(position);
     });
   });
